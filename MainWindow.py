@@ -48,7 +48,7 @@ class Ui_MainWindow(object):
 		self.window.show()
 
 	def call_capture_image(self):
-		self.image_handler.captured_image()
+		self.image_handler.capture_image()
 
 	def call_capture_and_exit(self):
 		# self.image_handler.set_exit_true()
