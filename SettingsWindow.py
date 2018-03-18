@@ -9,55 +9,55 @@
 from PyQt4 import QtCore, QtGui
 
 try:
-    _fromUtf8 = QtCore.QString.fromUtf8
+	_fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    def _fromUtf8(s):
-        return s
+	def _fromUtf8(s):
+		return s
 
 try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+	_encoding = QtGui.QApplication.UnicodeUTF8
+	def _translate(context, text, disambig):
+		return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+	def _translate(context, text, disambig):
+		return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_SettingsWindow(object):
-    def setupUi(self, SettingsWindow):
-        SettingsWindow.setObjectName(_fromUtf8("SettingsWindow"))
-        SettingsWindow.resize(427, 219)
-        self.centralwidget = QtGui.QWidget(SettingsWindow)
-        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.capture_image_button = QtGui.QPushButton(self.centralwidget)
-        self.capture_image_button.setGeometry(QtCore.QRect(140, 40, 121, 41))
-        self.capture_image_button.setObjectName(_fromUtf8("capture_image_button"))
-        self.set_threshold_button = QtGui.QPushButton(self.centralwidget)
-        self.set_threshold_button.setGeometry(QtCore.QRect(140, 90, 121, 41))
-        self.set_threshold_button.setObjectName(_fromUtf8("set_threshold_button"))
-        self.exit_button = QtGui.QPushButton(self.centralwidget)
-        self.exit_button.setGeometry(QtCore.QRect(140, 140, 121, 41))
-        self.exit_button.setObjectName(_fromUtf8("exit_button"))
-        SettingsWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtGui.QStatusBar(SettingsWindow)
-        self.statusbar.setObjectName(_fromUtf8("statusbar"))
-        SettingsWindow.setStatusBar(self.statusbar)
+	def setupUi(self, SettingsWindow):
+		SettingsWindow.setObjectName(_fromUtf8("SettingsWindow"))
+		SettingsWindow.resize(427, 219)
+		self.centralwidget = QtGui.QWidget(SettingsWindow)
+		self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
+		self.capture_image_button = QtGui.QPushButton(self.centralwidget)
+		self.capture_image_button.setGeometry(QtCore.QRect(140, 40, 121, 41))
+		self.capture_image_button.setObjectName(_fromUtf8("capture_image_button"))
+		self.set_threshold_button = QtGui.QPushButton(self.centralwidget)
+		self.set_threshold_button.setGeometry(QtCore.QRect(140, 90, 121, 41))
+		self.set_threshold_button.setObjectName(_fromUtf8("set_threshold_button"))
+		self.exit_button = QtGui.QPushButton(self.centralwidget)
+		self.exit_button.setGeometry(QtCore.QRect(140, 140, 121, 41))
+		self.exit_button.setObjectName(_fromUtf8("exit_button"))
+		SettingsWindow.setCentralWidget(self.centralwidget)
+		self.statusbar = QtGui.QStatusBar(SettingsWindow)
+		self.statusbar.setObjectName(_fromUtf8("statusbar"))
+		SettingsWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(SettingsWindow)
-        QtCore.QMetaObject.connectSlotsByName(SettingsWindow)
+		self.retranslateUi(SettingsWindow)
+		QtCore.QMetaObject.connectSlotsByName(SettingsWindow)
 
-    def retranslateUi(self, SettingsWindow):
-        SettingsWindow.setWindowTitle(_translate("SettingsWindow", "SettingsWindow", None))
-        self.capture_image_button.setText(_translate("SettingsWindow", "Capture Image", None))
-        self.set_threshold_button.setText(_translate("SettingsWindow", "Set Threshold", None))
-        self.exit_button.setText(_translate("SettingsWindow", "Exit", None))
+	def retranslateUi(self, SettingsWindow):
+		SettingsWindow.setWindowTitle(_translate("SettingsWindow", "SettingsWindow", None))
+		self.capture_image_button.setText(_translate("SettingsWindow", "Capture Image", None))
+		self.set_threshold_button.setText(_translate("SettingsWindow", "Set Threshold", None))
+		self.exit_button.setText(_translate("SettingsWindow", "Exit", None))
 
 
 if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    SettingsWindow = QtGui.QMainWindow()
-    ui = Ui_SettingsWindow()
-    ui.setupUi(SettingsWindow)
-    SettingsWindow.show()
-    sys.exit(app.exec_())
+	import sys
+	app = QtGui.QApplication(sys.argv)
+	SettingsWindow = QtGui.QMainWindow()
+	ui = Ui_SettingsWindow()
+	ui.setupUi(SettingsWindow)
+	SettingsWindow.show()
+	sys.exit(app.exec_())
 
