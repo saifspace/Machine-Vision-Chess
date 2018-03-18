@@ -26,6 +26,7 @@ class Ui_SettingsWindow(object):
 
 	def __init__(self):
 		self.image_handler = None
+		self.settings_window = None
 
 	def set_image_handler(self, imageHandler):
 		self.image_handler = imageHandler
@@ -36,9 +37,21 @@ class Ui_SettingsWindow(object):
 	def call_capture_and_exit(self):
 		self.image_handler.set_exit_true()
 
+	def call_set_threshold(self):
+		self.image_handler.load_captured_image(flag='win')
+		self.image_handler.set_thresholds()
+		self.image_handler.crop_and_save()
+		self.image_handler.slice_image()
+		self.image_handler.new_create_block_id_threshold_dictionary()
+
+	def call_exit_window(self):
+		self.image_handler.close_all_windows()
+		self.settings_window.close()
+
 	def setupUi(self, SettingsWindow):
 		SettingsWindow.setObjectName(_fromUtf8("SettingsWindow"))
 		SettingsWindow.resize(427, 250)
+		self.settings_window = SettingsWindow
 		self.centralwidget = QtGui.QWidget(SettingsWindow)
 		self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
 
@@ -55,10 +68,12 @@ class Ui_SettingsWindow(object):
 		self.set_threshold_button = QtGui.QPushButton(self.centralwidget)
 		self.set_threshold_button.setGeometry(QtCore.QRect(140, 140, 121, 41))
 		self.set_threshold_button.setObjectName(_fromUtf8("set_threshold_button"))
+		self.set_threshold_button.clicked.connect(self.call_set_threshold)
 
 		self.exit_button = QtGui.QPushButton(self.centralwidget)
 		self.exit_button.setGeometry(QtCore.QRect(140, 190, 121, 41))
 		self.exit_button.setObjectName(_fromUtf8("exit_button"))
+		self.exit_button.clicked.connect(self.call_exit_window)
 
 		SettingsWindow.setCentralWidget(self.centralwidget)
 		self.statusbar = QtGui.QStatusBar(SettingsWindow)
