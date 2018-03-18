@@ -40,8 +40,10 @@ class ImageHandler:
 		self.block_id_threshold_dictionary = {}
 		self.block_thresholds = {}
 
-		self.captured_image_path_mac = '/Users/omgitsmotrix/Desktop/finalYearProject/preperation/image-processing/flood_light_day7/captured_image/board.png'
-		self.captured_image_path_win = 'C:\Users\Saif\Desktop\\finalyearproject\preperation\image-processing\\flood_light_day7\captured_image\\board.png'
+		# self.captured_image_path_mac = '/Users/omgitsmotrix/Desktop/finalYearProject/preperation/image-processing/flood_light_day7/captured_image/board.png'
+		# self.captured_image_path_win = 'C:\Users\Saif\Desktop\\finalyearproject\preperation\image-processing\\flood_light_day7\captured_image\\board.png'
+		self.captured_image_path_mac = os.getcwd() + '/Resources/CapturedImage/board.png'
+		self.captured_image_path_win = os.getcwd() + '\Resources\CapturedImage\\board.png'
 
 		self.test_path_mac = '/Users/omgitsmotrix/Desktop/finalYearProject/preperation/image-processing/flood_light_day7/board.png'
 		self.test_path_win = 'C:\Users\Saif\Desktop\\finalyearproject\preperation\image-processing\\flood_light_day7\\board.png'
