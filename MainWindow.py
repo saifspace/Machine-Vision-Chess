@@ -51,7 +51,7 @@ class Ui_MainWindow(object):
 		self.image_handler.capture_image()
 
 	def call_capture_and_exit(self):
-		# self.image_handler.set_exit_true()
+		self.image_handler.set_exit_true()
 		self.image_handler.load_captured_image(flag='win')
 
 	def call_iterate_blocks(self):
