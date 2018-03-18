@@ -56,6 +56,7 @@ class Ui_MainWindow(object):
 		print chess.ascii()
 		setup = chess.get_setup()
 		ImageRepresentation.create_image(setup)
+		self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "/resources/modifiedChessboard.png"))
 
 
 	def setupUi(self, MainWindow):

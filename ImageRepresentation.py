@@ -85,4 +85,4 @@ def create_image(setup_dict):
 		print position
 		foreground = Image.open(pieces_paths[piece])
 		background.paste(foreground, position, foreground)
-	background.show()
+	background.save(os.getcwd() + '/Resources/' + 'modifiedChessboard.png')
