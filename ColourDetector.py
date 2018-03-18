@@ -23,6 +23,19 @@ class Pieces(Enum):
 	CRIM_RED = {'type': 'k', 'color': 'b'}
 	CB_FLESH = {'type': 'q', 'color': 'b'}
 
+	wpawn = {'type': 'p', 'color': 'w'}
+	wrook = {'type': 'r', 'color': 'w'}
+	wknight = {'type': 'n', 'color': 'w'}
+	wbishop = {'type': 'b', 'color': 'w'}
+	wking =  {'type': 'k', 'color': 'w'}
+	wqueen = {'type': 'q', 'color': 'w'}
+
+	bpawn = {'type': 'p', 'color': 'b'}
+	brook = {'type': 'r', 'color': 'b'}
+	bknight = {'type': 'n', 'color': 'b'}
+	bbishop = {'type': 'b', 'color': 'b'}
+	bking = {'type': 'k', 'color': 'b'}
+	bqueen = {'type': 'q', 'color': 'b'}
 
 class ColourDetector:
 

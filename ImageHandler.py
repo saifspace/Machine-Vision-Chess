@@ -2,6 +2,7 @@ import Libraries.image_slicer.image_slicer.main as image_slicer
 import cv2
 import os
 from ColourDetector import ColourDetector
+from Libraries.machine_learning.label_image import predict_label
 
 
 class ImageHandler:
@@ -264,6 +265,31 @@ class ImageHandler:
 				piece_square_info[b] = colour_detection.get_piece_dictionary_from_colour(piece[0]) # a dictionary mapping block id to piece info dictionary.
 		return piece_square_info
 
+	def ml_iterate_blocks(self):
+		piece_square_info = {}
+		colour_detection = ColourDetector()
+
+		print 'Detecting Pieces.'
+
+		for b in self.reverse_blocks:
+
+			threshold = self.block_id_threshold_dictionary[b]
+
+			print b + ' ' + str(threshold)
+
+			x1 = threshold[0]
+			x2 = threshold[2]
+			y1 = threshold[1]
+			y2 = threshold[3]
+
+
+			cropped_image = cv2.imread(os.getcwd() + '/Resources/CapturedImage/board.png')
+			# cropped_image_hsv = cv2.cvtColor(cropped_image[y1:y2, x1:x2], cv2.COLOR_BGR2HSV)
+			cv2.imwrite(os.getcwd() + "/Resources/CapturedImage/"+b+".png", cropped_image[y1:y2, x1:x2])
+			piece = (predict_label(os.getcwd() + "/Resources/CapturedImage/"+b+".png")).replace(" ", "")
+			if(piece != "empty"):
+				piece_square_info[b] = colour_detection.get_piece_dictionary_from_colour(piece)
+		return piece_square_info
 
 
 	def slice_image(self):

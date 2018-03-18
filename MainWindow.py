@@ -52,10 +52,21 @@ class Ui_MainWindow(object):
 
 	def call_capture_and_exit(self):
 		self.image_handler.set_exit_true()
-		self.image_handler.load_captured_image(flag='win')
+		self.image_handler.load_captured_image(flag='1')
 
 	def call_iterate_blocks(self):
 		piece_square_info = self.image_handler.new_iterate_blocks()
+
+		for s in piece_square_info.keys():
+			chess.put(piece_square_info[s], s)
+
+		print chess.ascii()
+		setup = chess.get_setup()
+		ImageRepresentation.create_image(setup)
+		self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "/resources/modifiedChessboard.png"))
+
+	def call_ml_iterate_blocks(self):
+		piece_square_info = self.image_handler.ml_iterate_blocks()
 
 		for s in piece_square_info.keys():
 			chess.put(piece_square_info[s], s)
@@ -101,6 +112,7 @@ class Ui_MainWindow(object):
 		self.ml_detect_button.setDefault(False)
 		self.ml_detect_button.setFlat(False)
 		self.ml_detect_button.setObjectName(_fromUtf8("ml_detect_button"))
+		self.ml_detect_button.clicked.connect(self.call_ml_iterate_blocks)
 
 		self.settings_button = QtGui.QPushButton(self.centralwidget)
 		self.settings_button.setGeometry(QtCore.QRect(0, 30, 221, 41))

@@ -1,0 +1,13 @@
+b bishop
+b king
+b knight
+b pawn
+b queen
+b rook
+empty
+w bishop
+w king
+w knight
+w pawn
+w queen
+w rook
