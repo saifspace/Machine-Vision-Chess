@@ -39,7 +39,11 @@ class Ui_MainWindow(object):
 		self.ui.setupUi(self.window)
 		self.window.show()
 
+	def call_capture_image(self):
+		self.image_handler.captured_image()
 
+	def call_capture_and_exit(self):
+		self.image_handler.set_exit_true()
 
 	def setupUi(self, MainWindow):
 		MainWindow.setObjectName(_fromUtf8("MainWindow"))
@@ -56,6 +60,7 @@ class Ui_MainWindow(object):
 		self.video_button = QtGui.QPushButton(self.centralwidget)
 		self.video_button.setGeometry(QtCore.QRect(0, 80, 221, 41))
 		self.video_button.setObjectName(_fromUtf8("video_button"))
+		self.video_button.clicked.connect(self.call_capture_image)
 
 		self.colour_detect_button = QtGui.QPushButton(self.centralwidget)
 		self.colour_detect_button.setEnabled(True)
@@ -121,6 +126,7 @@ class Ui_MainWindow(object):
 		self.capture_image_button = QtGui.QPushButton(self.centralwidget)
 		self.capture_image_button.setGeometry(QtCore.QRect(0, 130, 221, 41))
 		self.capture_image_button.setObjectName(_fromUtf8("capture_image_button"))
+		self.capture_image_button.clicked.connect(self.call_capture_and_exit)
 
 		self.predict_button = QtGui.QPushButton(self.centralwidget)
 		self.predict_button.setEnabled(True)
