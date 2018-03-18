@@ -33,7 +33,7 @@ class Ui_SettingsWindow(object):
 	def call_capture_image(self):
 		self.image_handler.capture_image()
 
-	def capture_and_exit(self):
+	def call_capture_and_exit(self):
 		self.image_handler.set_exit_true()
 
 	def setupUi(self, SettingsWindow):
@@ -50,7 +50,7 @@ class Ui_SettingsWindow(object):
 		self.capture_image_button = QtGui.QPushButton(self.centralwidget)
 		self.capture_image_button.setGeometry(QtCore.QRect(140, 90, 121, 41))
 		self.capture_image_button.setObjectName(_fromUtf8("capture_image_button"))
-		self.capture_image_button.clicked.connect(self.capture_and_exit)
+		self.capture_image_button.clicked.connect(self.call_capture_and_exit)
 
 		self.set_threshold_button = QtGui.QPushButton(self.centralwidget)
 		self.set_threshold_button.setGeometry(QtCore.QRect(140, 140, 121, 41))
