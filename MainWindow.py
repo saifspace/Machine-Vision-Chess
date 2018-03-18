@@ -47,7 +47,7 @@ class Ui_MainWindow(object):
 
 	def call_capture_and_exit(self):
 		# self.image_handler.set_exit_true()
-		self.image_handler.load_captured_image(flag='1')
+		self.image_handler.load_captured_image(flag='2')
 
 	def call_iterate_blocks(self):
 		piece_square_info = self.image_handler.new_iterate_blocks()

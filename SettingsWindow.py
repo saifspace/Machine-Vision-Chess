@@ -38,7 +38,7 @@ class Ui_SettingsWindow(object):
 		self.image_handler.set_exit_true()
 
 	def call_set_threshold(self):
-		self.image_handler.load_captured_image(flag='1')
+		self.image_handler.load_captured_image(flag='2')
 		self.image_handler.set_thresholds()
 		self.image_handler.crop_and_save()
 		self.image_handler.slice_image()

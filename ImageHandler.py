@@ -192,7 +192,7 @@ class ImageHandler:
 		self.crop_y_value = y1
 
 		self.cropped_image = self.captured_image[y1:y2, x1:x2]
-		cv2.imwrite(os.getcwd() + '/../captured_image/board.png', self.cropped_image)
+		cv2.imwrite(os.getcwd() + '/Resources/CapturedImage/board.png', self.cropped_image)
 
 
 	def iterate_blocks(self):
@@ -251,7 +251,7 @@ class ImageHandler:
 			y2 = threshold[3]
 
 
-			cropped_image = cv2.imread(os.getcwd() + '/../captured_image/board.png')
+			cropped_image = cv2.imread(os.getcwd() + '/Resources/CapturedImage/board.png')
 			cropped_image_hsv = cv2.cvtColor(cropped_image[y1:y2, x1:x2], cv2.COLOR_BGR2HSV)
 
 			# Colour Detection method applied here: Mask, Closest colour threshold or Image Classification.
@@ -265,7 +265,7 @@ class ImageHandler:
 
 
 	def slice_image(self):
-		cropped_image_path = os.getcwd() + '/../captured_image/board.png'
+		cropped_image_path = os.getcwd() + '/Resources/CapturedImage/board.png'
 		self.block_thresholds = image_slicer.slice(cropped_image_path, 64)
 
 	def new_create_block_id_threshold_dictionary(self):
