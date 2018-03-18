@@ -44,13 +44,16 @@ class Ui_MainWindow(object):
 		MainWindow.resize(799, 557)
 		self.centralwidget = QtGui.QWidget(MainWindow)
 		self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
+
 		self.board_image_label = QtGui.QLabel(self.centralwidget)
 		self.board_image_label.setGeometry(QtCore.QRect(295, 2, 500, 500))
 		self.board_image_label.setFrameShape(QtGui.QFrame.Box)
 		self.board_image_label.setObjectName(_fromUtf8("board_image_label"))
+
 		self.video_button = QtGui.QPushButton(self.centralwidget)
 		self.video_button.setGeometry(QtCore.QRect(0, 80, 221, 41))
 		self.video_button.setObjectName(_fromUtf8("video_button"))
+
 		self.colour_detect_button = QtGui.QPushButton(self.centralwidget)
 		self.colour_detect_button.setEnabled(True)
 		self.colour_detect_button.setGeometry(QtCore.QRect(0, 180, 221, 41))
@@ -59,6 +62,7 @@ class Ui_MainWindow(object):
 		self.colour_detect_button.setDefault(False)
 		self.colour_detect_button.setFlat(False)
 		self.colour_detect_button.setObjectName(_fromUtf8("colour_detect_button"))
+
 		self.ml_detect_button = QtGui.QPushButton(self.centralwidget)
 		self.ml_detect_button.setEnabled(True)
 		self.ml_detect_button.setGeometry(QtCore.QRect(0, 230, 221, 41))
@@ -67,6 +71,7 @@ class Ui_MainWindow(object):
 		self.ml_detect_button.setDefault(False)
 		self.ml_detect_button.setFlat(False)
 		self.ml_detect_button.setObjectName(_fromUtf8("ml_detect_button"))
+
 		self.settings_button = QtGui.QPushButton(self.centralwidget)
 		self.settings_button.setGeometry(QtCore.QRect(0, 30, 221, 41))
 		self.settings_button.setObjectName(_fromUtf8("settings_button"))
@@ -77,25 +82,30 @@ class Ui_MainWindow(object):
 		self.vertical_line.setFrameShape(QtGui.QFrame.VLine)
 		self.vertical_line.setFrameShadow(QtGui.QFrame.Sunken)
 		self.vertical_line.setObjectName(_fromUtf8("vertical_line"))
+
 		self.horizontal_line = QtGui.QFrame(self.centralwidget)
 		self.horizontal_line.setGeometry(QtCore.QRect(0, 410, 241, 16))
 		self.horizontal_line.setFrameShape(QtGui.QFrame.HLine)
 		self.horizontal_line.setFrameShadow(QtGui.QFrame.Sunken)
 		self.horizontal_line.setObjectName(_fromUtf8("horizontal_line"))
+
 		self.prediction_text = QtGui.QLineEdit(self.centralwidget)
 		self.prediction_text.setGeometry(QtCore.QRect(80, 440, 141, 31))
 		self.prediction_text.setText(_fromUtf8(""))
 		self.prediction_text.setObjectName(_fromUtf8("prediction_text"))
 		self.prediction_label = QtGui.QLabel(self.centralwidget)
 		self.prediction_label.setGeometry(QtCore.QRect(10, 440, 71, 31))
+
 		font = QtGui.QFont()
 		font.setFamily(_fromUtf8("Arial"))
 		font.setPointSize(14)
 		font.setBold(False)
 		font.setItalic(False)
 		font.setWeight(50)
+
 		self.prediction_label.setFont(font)
 		self.prediction_label.setObjectName(_fromUtf8("prediction_label"))
+
 		self.quit_button = QtGui.QPushButton(self.centralwidget)
 		self.quit_button.setEnabled(True)
 		self.quit_button.setGeometry(QtCore.QRect(0, 330, 221, 41))
@@ -104,9 +114,11 @@ class Ui_MainWindow(object):
 		self.quit_button.setDefault(False)
 		self.quit_button.setFlat(False)
 		self.quit_button.setObjectName(_fromUtf8("quit_button"))
+
 		self.capture_image_button = QtGui.QPushButton(self.centralwidget)
 		self.capture_image_button.setGeometry(QtCore.QRect(0, 130, 221, 41))
 		self.capture_image_button.setObjectName(_fromUtf8("capture_image_button"))
+
 		self.predict_button = QtGui.QPushButton(self.centralwidget)
 		self.predict_button.setEnabled(True)
 		self.predict_button.setGeometry(QtCore.QRect(0, 280, 221, 41))
@@ -115,6 +127,7 @@ class Ui_MainWindow(object):
 		self.predict_button.setDefault(False)
 		self.predict_button.setFlat(False)
 		self.predict_button.setObjectName(_fromUtf8("predict_button"))
+
 		MainWindow.setCentralWidget(self.centralwidget)
 		self.statusbar = QtGui.QStatusBar(MainWindow)
 		self.statusbar.setObjectName(_fromUtf8("statusbar"))
