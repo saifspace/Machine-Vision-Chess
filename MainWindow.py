@@ -7,6 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 import os
+import chess
+import ImageRepresentation
 
 from PyQt4 import QtCore, QtGui
 from SettingsWindow import Ui_SettingsWindow
@@ -45,6 +47,17 @@ class Ui_MainWindow(object):
 	def call_capture_and_exit(self):
 		self.image_handler.set_exit_true()
 
+	def call_iterate_blocks(self):
+		piece_square_info = self.image_handler.new_iterate_blocks()
+
+		for s in piece_square_info.keys():
+			chess.put(piece_square_info[s], s)
+
+		print chess.ascii()
+		setup = chess.get_setup()
+		ImageRepresentation.create_image(setup)
+
+
 	def setupUi(self, MainWindow):
 		MainWindow.setObjectName(_fromUtf8("MainWindow"))
 		MainWindow.resize(799, 557)
@@ -70,6 +83,7 @@ class Ui_MainWindow(object):
 		self.colour_detect_button.setDefault(False)
 		self.colour_detect_button.setFlat(False)
 		self.colour_detect_button.setObjectName(_fromUtf8("colour_detect_button"))
+		self.colour_detect_button.clicked.connect(self.call_iterate_blocks)
 
 		self.ml_detect_button = QtGui.QPushButton(self.centralwidget)
 		self.ml_detect_button.setEnabled(True)
