@@ -6,6 +6,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+import os
+
 from PyQt4 import QtCore, QtGui
 from SettingsWindow import Ui_SettingsWindow
 from ImageHandler import ImageHandler
@@ -49,6 +51,7 @@ class Ui_MainWindow(object):
 		self.board_image_label.setGeometry(QtCore.QRect(295, 2, 500, 500))
 		self.board_image_label.setFrameShape(QtGui.QFrame.Box)
 		self.board_image_label.setObjectName(_fromUtf8("board_image_label"))
+		self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "/resources/chessboard2.png"))
 
 		self.video_button = QtGui.QPushButton(self.centralwidget)
 		self.video_button.setGeometry(QtCore.QRect(0, 80, 221, 41))
@@ -138,7 +141,7 @@ class Ui_MainWindow(object):
 
 	def retranslateUi(self, MainWindow):
 		MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
-		self.board_image_label.setText(_translate("MainWindow", "Chessboard Image Representation", None))
+		# self.board_image_label.setText(_translate("MainWindow", "Chessboard Image Representation", None))
 		self.video_button.setText(_translate("MainWindow", "Show Video Stream", None))
 		self.colour_detect_button.setText(_translate("MainWindow", "Detect: Colour Detection", None))
 		self.ml_detect_button.setText(_translate("MainWindow", "Detect: Machine Learning", None))
