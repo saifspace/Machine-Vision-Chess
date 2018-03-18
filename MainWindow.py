@@ -8,6 +8,7 @@
 
 from PyQt4 import QtCore, QtGui
 from SettingsWindow import Ui_SettingsWindow
+from ImageHandler import ImageHandler
 
 try:
 	_fromUtf8 = QtCore.QString.fromUtf8
@@ -25,11 +26,18 @@ except AttributeError:
 
 class Ui_MainWindow(object):
 
+	def __init__(self):
+		self.ui = Ui_SettingsWindow()
+		self.image_handler = ImageHandler()
+		self.ui.set_image_handler(self.image_handler)
+
+
 	def openSettingsWindow(self):
 		self.window = QtGui.QMainWindow()
-		self.ui = Ui_SettingsWindow()
 		self.ui.setupUi(self.window)
 		self.window.show()
+
+
 
 	def setupUi(self, MainWindow):
 		MainWindow.setObjectName(_fromUtf8("MainWindow"))

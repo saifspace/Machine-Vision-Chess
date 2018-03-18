@@ -23,20 +23,43 @@ except AttributeError:
 		return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_SettingsWindow(object):
+
+	def __init__(self):
+		self.image_handler = None
+
+	def set_image_handler(self, imageHandler):
+		self.image_handler = imageHandler
+
+	def call_capture_image(self):
+		self.image_handler.capture_image()
+
+	def capture_and_exit(self):
+		self.image_handler.set_exit_true()
+
 	def setupUi(self, SettingsWindow):
 		SettingsWindow.setObjectName(_fromUtf8("SettingsWindow"))
-		SettingsWindow.resize(427, 219)
+		SettingsWindow.resize(427, 250)
 		self.centralwidget = QtGui.QWidget(SettingsWindow)
 		self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
+
+		self.show_video_stream_button = QtGui.QPushButton(self.centralwidget)
+		self.show_video_stream_button.setGeometry(QtCore.QRect(140, 40, 121, 41))
+		self.show_video_stream_button.setObjectName(_fromUtf8("show_video_stream_button"))
+		self.show_video_stream_button.clicked.connect(self.call_capture_image)
+
 		self.capture_image_button = QtGui.QPushButton(self.centralwidget)
-		self.capture_image_button.setGeometry(QtCore.QRect(140, 40, 121, 41))
+		self.capture_image_button.setGeometry(QtCore.QRect(140, 90, 121, 41))
 		self.capture_image_button.setObjectName(_fromUtf8("capture_image_button"))
+		self.capture_image_button.clicked.connect(self.capture_and_exit)
+
 		self.set_threshold_button = QtGui.QPushButton(self.centralwidget)
-		self.set_threshold_button.setGeometry(QtCore.QRect(140, 90, 121, 41))
+		self.set_threshold_button.setGeometry(QtCore.QRect(140, 140, 121, 41))
 		self.set_threshold_button.setObjectName(_fromUtf8("set_threshold_button"))
+
 		self.exit_button = QtGui.QPushButton(self.centralwidget)
-		self.exit_button.setGeometry(QtCore.QRect(140, 140, 121, 41))
+		self.exit_button.setGeometry(QtCore.QRect(140, 190, 121, 41))
 		self.exit_button.setObjectName(_fromUtf8("exit_button"))
+
 		SettingsWindow.setCentralWidget(self.centralwidget)
 		self.statusbar = QtGui.QStatusBar(SettingsWindow)
 		self.statusbar.setObjectName(_fromUtf8("statusbar"))
@@ -47,6 +70,7 @@ class Ui_SettingsWindow(object):
 
 	def retranslateUi(self, SettingsWindow):
 		SettingsWindow.setWindowTitle(_translate("SettingsWindow", "SettingsWindow", None))
+		self.show_video_stream_button.setText(_translate("SettingsWindow", "Video Stream", None))
 		self.capture_image_button.setText(_translate("SettingsWindow", "Capture Image", None))
 		self.set_threshold_button.setText(_translate("SettingsWindow", "Set Threshold", None))
 		self.exit_button.setText(_translate("SettingsWindow", "Exit", None))
