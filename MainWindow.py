@@ -6,8 +6,13 @@
 #
 # WARNING! All changes made in this file will be lost!
 import sys
-sys.path.append('/Users/omgitsmotrix/desktop/finalYearProject/preperation/stockfish_integration')
 import os
+
+# path for Mac
+sys.path.append(os.getcwd() + '/Libraries/chess_helper')
+# path for Windows
+sys.path.append(os.getcwd() + '\Libraries\chess_helper')
+
 import chess
 import ImageRepresentation
 
