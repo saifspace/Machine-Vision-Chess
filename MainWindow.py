@@ -5,7 +5,8 @@
 # Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
-
+import sys
+sys.path.append('/Users/omgitsmotrix/desktop/finalYearProject/preperation/stockfish_integration')
 import os
 import chess
 import ImageRepresentation
@@ -45,7 +46,8 @@ class Ui_MainWindow(object):
 		self.image_handler.captured_image()
 
 	def call_capture_and_exit(self):
-		self.image_handler.set_exit_true()
+		# self.image_handler.set_exit_true()
+		self.image_handler.load_captured_image(flag='1')
 
 	def call_iterate_blocks(self):
 		piece_square_info = self.image_handler.new_iterate_blocks()
