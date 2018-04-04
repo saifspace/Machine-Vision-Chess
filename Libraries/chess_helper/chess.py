@@ -197,26 +197,26 @@ def ascii():
     return s
 
 def put(piece, square):
-    print piece, ' ', square
+    # print piece, ' ', square
     global board
 
 
     if (not('type' in piece and 'color' in piece)):
-        print 'a'
+        # print 'a'
         return False
 
     if (SYMBOLS.find(str(piece['type']).lower()) == -1):
-        print 'b'
+        # print 'b'
         return False
 
     if (not(square in SQUARES)):
-        print 'c'
+        # print 'c'
         return False
 
     sq = SQUARES[square]
 
     if (piece['type'] == KING and not( kings[piece['color']] == EMPTY or kings[piece['color']] == sq) ):
-        print 'd'
+        # print 'd'
         return False
 
     board[sq] = {'type': piece['type'], 'color': piece['color']}
@@ -226,7 +226,7 @@ def put(piece, square):
 
     update_setup(generate_fen())
 
-    print 'e'
+    # print 'e'
     return True
 
 
@@ -270,6 +270,11 @@ def get_setup():
 
     return non_empty_squares
 
+def clear_setup():
+    global board
+    print("clear")
+    board = [None] * 128
+    update_setup(generate_fen())
 
 # Local tests:
 

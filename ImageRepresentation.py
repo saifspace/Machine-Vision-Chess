@@ -37,11 +37,11 @@ class ChessboardImage:
 		i = 1
 		for count, b in enumerate(self.reverse_blocks):
 
-			print b
+			# print b
 			if count in self.block_intervals:
 				i = (self.block_intervals.index(count)) + 2
 
-			print i
+			# print i
 			self.block_id_threshold_dictionary[b] = self.block_thresholds[i]
 
 			i+=8
@@ -77,12 +77,14 @@ pieces_paths = {
 
 def create_image(setup_dict):
 	background = Image.open(os.getcwd() + '/Resources/chessboard2.png')
-	for key, value in setup_dict.iteritems():
+	for key, value in setup_dict.items():
+		print(key)
+		print(value)
 		piece = value[1] + '_' + value[0]
 		position = block_dict[key]
-		print key
-		print value
-		print position
+		# print key
+		# print value
+		# print position
 		foreground = Image.open(pieces_paths[piece])
 		background.paste(foreground, position, foreground)
 	background.save(os.getcwd() + '/Resources/' + 'modifiedChessboard.png')

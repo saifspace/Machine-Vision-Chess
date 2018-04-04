@@ -46,8 +46,8 @@ class ImageHandler:
 		self.captured_image_path_mac = os.getcwd() + '/Resources/CapturedImage/board.png'
 		self.captured_image_path_win = os.getcwd() + '\Resources\CapturedImage\\board.png'
 
-		self.test_path_mac = '/Users/omgitsmotrix/Desktop/finalYearProject/preperation/image-processing/flood_light_day7/board.png'
-		self.test_path_win = 'C:\Users\Saif\Desktop\\finalyearproject\preperation\image-processing\\flood_light_day7\\board.png'
+		# self.test_path_mac = '/Users/omgitsmotrix/Desktop/finalYearProject/preperation/image-processing/flood_light_day7/board.png'
+		# self.test_path_win = 'C:\Users\Saif\Desktop\\finalyearproject\preperation\image-processing\\flood_light_day7\\board.png'
 
 		self.captured_image = ''
 		self.cropped_image = ''
@@ -65,7 +65,7 @@ class ImageHandler:
 		Returns:
 			Will return nothing, thus None is returned by default.
 		"""
-		print 'Video Stream Loaded.'
+		# print 'Video Stream Loaded.'
 
 		video_cap = cv2.VideoCapture(0)
 		video_cap.set(3,640)
@@ -81,16 +81,16 @@ class ImageHandler:
 				i = 1
 				for b in self.blocks:
 					cv2.rectangle(feed, (self.block_thresholds[i][0] + self.crop_x_value, self.block_thresholds[i][1] + self.crop_y_value), (self.block_thresholds[i][2] + self.crop_x_value, self.block_thresholds[i][3] + self.crop_y_value), (255,255,255),1)
-					x = ((self.block_thresholds[i][0]) + (self.block_thresholds[i][2]))/2 + self.crop_x_value
-					y = ((self.block_thresholds[i][1]) + (self.block_thresholds[i][3]))/2 + self.crop_y_value
-					cv2.rectangle(feed, (x-15, y-10), (x+15, y+10), (255, 255, 255), 1)
+					# x = ((self.block_thresholds[i][0]) + (self.block_thresholds[i][2]))/2 + self.crop_x_value
+					# y = ((self.block_thresholds[i][1]) + (self.block_thresholds[i][3]))/2 + self.crop_y_value
+					# cv2.rectangle(feed, (x-15, y-10), (x+15, y+10), (255, 255, 255), 1)
 					i = i + 1
 
 			cv2.imshow("FEED", feed) # update the feed here with drawn thresholds set.
 
 			if cv2.waitKey(33) == ord('c') or self.exit == True:
 				cv2.imwrite(self.captured_image_path_win, feed)
-				print 'Image Captured.'
+				# print 'Image Captured.'
 				break
 
 		self.set_exit_false()
@@ -115,15 +115,15 @@ class ImageHandler:
 		elif flag == 'mac_test':
 			path = self.test_path_mac
 		elif flag == '1':
-			path = '/Users/omgitsmotrix/Desktop/finalYearProject/preperation/image-processing/flood_light_day7/ProgressReviewImages/1.png'
+			path = 'C:\\Users\\Saif\\Desktop\\1.png'
 		elif flag == '2':
-			path = '/Users/omgitsmotrix/Desktop/finalYearProject/preperation/image-processing/flood_light_day7/ProgressReviewImages/2.png'
+			path = 'C:\\Users\\Saif\\Desktop\\2.png'
 		elif flag == '3':
-			path = '/Users/omgitsmotrix/Desktop/finalYearProject/preperation/image-processing/flood_light_day7/ProgressReviewImages/3.png'
+			path = 'C:\\Users\\Saif\\Desktop\\3.png'
 
 		self.captured_image = cv2.imread(path)
 
-		print 'Image Loaded.'
+		# print 'Image Loaded.'
 
 	# @staticmethod
 	def mouse_click_crop(self, event, x, y, flags, param):
@@ -164,7 +164,7 @@ class ImageHandler:
 			cv2.setMouseCallback('image', self.mouse_click_crop)
 			cv2.waitKey(0)
 			if cv2.waitKey() == ord('q'):
-				print 'Thresholds Set.'
+				# print 'Thresholds Set.'
 				break
 		cv2.destroyAllWindows()
 
@@ -186,6 +186,9 @@ class ImageHandler:
 		tuple_one = self.crop_thresholds[0]
 		tuple_two = self.crop_thresholds[1]
 
+		mac_path = os.getcwd() + '/Resources/CapturedImage/board.png'
+		win_path = os.getcwd() + '\Resources\CapturedImage\\board.png'
+
 		x1 = tuple_one[0]
 		x2 = tuple_two[0]
 		y1 = tuple_one[1]
@@ -195,7 +198,7 @@ class ImageHandler:
 		self.crop_y_value = y1
 
 		self.cropped_image = self.captured_image[y1:y2, x1:x2]
-		cv2.imwrite(os.getcwd() + '/Resources/CapturedImage/board.png', self.cropped_image)
+		cv2.imwrite(win_path, self.cropped_image)
 
 
 	def iterate_blocks(self):
@@ -211,7 +214,7 @@ class ImageHandler:
 		piece_square_info = {}
 		colour_detection = ColourDetector()
 
-		print 'Detecting Pieces.'
+		# print 'Detecting Pieces.'
 
 		for b in self.blocks:
 
@@ -240,13 +243,13 @@ class ImageHandler:
 		piece_square_info = {}
 		colour_detection = ColourDetector()
 
-		print 'Detecting Pieces.'
+		# print 'Detecting Pieces.'
 
 		for b in self.reverse_blocks:
 
 			threshold = self.block_id_threshold_dictionary[b]
 
-			print b + ' ' + str(threshold)
+			# print b + ' ' + str(threshold)
 
 			x1 = threshold[0]
 			x2 = threshold[2]
@@ -269,31 +272,39 @@ class ImageHandler:
 		piece_square_info = {}
 		colour_detection = ColourDetector()
 
-		print 'Detecting Pieces.'
+		mac_path = os.getcwd() + "/Resources/CapturedImage/piece.png"
+		win_path = os.getcwd() + "\Resources\CapturedImage\piece.png"
+
+		# print 'Detecting Pieces.'
 
 		for b in self.reverse_blocks:
 
 			threshold = self.block_id_threshold_dictionary[b]
 
-			print b + ' ' + str(threshold)
+			# print b + ' ' + str(threshold)
 
-			x1 = threshold[0]
-			x2 = threshold[2]
-			y1 = threshold[1]
-			y2 = threshold[3]
+			x1 = threshold[0] + self.crop_x_value
+			x2 = threshold[2] + self.crop_x_value
+			y1 = threshold[1] + self.crop_y_value
+			y2 = threshold[3] + self.crop_y_value
 
 
 			cropped_image = cv2.imread(os.getcwd() + '/Resources/CapturedImage/board.png')
-			# cropped_image_hsv = cv2.cvtColor(cropped_image[y1:y2, x1:x2], cv2.COLOR_BGR2HSV)
-			cv2.imwrite(os.getcwd() + "/Resources/CapturedImage/"+b+".png", cropped_image[y1:y2, x1:x2])
-			piece = (predict_label(os.getcwd() + "/Resources/CapturedImage/"+b+".png")).replace(" ", "")
+
+			cv2.imwrite(os.getcwd()+ "\Resources\CapturedImage\\"+b+".png" ,  cropped_image[y1:y2, x1:x2])
+			cv2.imwrite(win_path, cropped_image[y1:y2, x1:x2])
+			piece = (predict_label(win_path)).replace(" ", "")
+
 			if(piece != "empty"):
 				piece_square_info[b] = colour_detection.get_piece_dictionary_from_colour(piece)
 		return piece_square_info
 
 
 	def slice_image(self):
-		cropped_image_path = os.getcwd() + '/Resources/CapturedImage/board.png'
+		mac_path = os.getcwd() + '/Resources/CapturedImage/board.png'
+		win_path = os.getcwd() + '\Resources\CapturedImage\\board.png'
+
+		cropped_image_path = win_path
 		self.block_thresholds = image_slicer.slice(cropped_image_path, 64)
 
 	def new_create_block_id_threshold_dictionary(self):
@@ -301,11 +312,11 @@ class ImageHandler:
 		i = 1
 		for count, b in enumerate(self.reverse_blocks):
 
-			print b
+			# print b
 			if count in self.block_intervals:
 				i = (self.block_intervals.index(count)) + 2
 
-			print i
+			# print i
 			self.block_id_threshold_dictionary[b] = self.block_thresholds[i]
 
 			i+=8

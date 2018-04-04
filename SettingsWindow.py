@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtWidgets, QtWidgets
 
 try:
 	_fromUtf8 = QtCore.QString.fromUtf8
@@ -15,12 +15,12 @@ except AttributeError:
 		return s
 
 try:
-	_encoding = QtGui.QApplication.UnicodeUTF8
+	_encoding = QtWidgets.QApplication.UnicodeUTF8
 	def _translate(context, text, disambig):
-		return QtGui.QApplication.translate(context, text, disambig, _encoding)
+		return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
 	def _translate(context, text, disambig):
-		return QtGui.QApplication.translate(context, text, disambig)
+		return QtWidgets.QApplication.translate(context, text, disambig)
 
 class Ui_SettingsWindow(object):
 
@@ -38,7 +38,7 @@ class Ui_SettingsWindow(object):
 		self.image_handler.set_exit_true()
 
 	def call_set_threshold(self):
-		self.image_handler.load_captured_image(flag='2')
+		self.image_handler.load_captured_image(flag='win')
 		self.image_handler.set_thresholds()
 		self.image_handler.crop_and_save()
 		self.image_handler.slice_image()
@@ -52,31 +52,31 @@ class Ui_SettingsWindow(object):
 		SettingsWindow.setObjectName(_fromUtf8("SettingsWindow"))
 		SettingsWindow.resize(427, 250)
 		self.settings_window = SettingsWindow
-		self.centralwidget = QtGui.QWidget(SettingsWindow)
+		self.centralwidget = QtWidgets.QWidget(SettingsWindow)
 		self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
 
-		self.show_video_stream_button = QtGui.QPushButton(self.centralwidget)
+		self.show_video_stream_button = QtWidgets.QPushButton(self.centralwidget)
 		self.show_video_stream_button.setGeometry(QtCore.QRect(140, 40, 121, 41))
 		self.show_video_stream_button.setObjectName(_fromUtf8("show_video_stream_button"))
 		self.show_video_stream_button.clicked.connect(self.call_capture_image)
 
-		self.capture_image_button = QtGui.QPushButton(self.centralwidget)
+		self.capture_image_button = QtWidgets.QPushButton(self.centralwidget)
 		self.capture_image_button.setGeometry(QtCore.QRect(140, 90, 121, 41))
 		self.capture_image_button.setObjectName(_fromUtf8("capture_image_button"))
 		self.capture_image_button.clicked.connect(self.call_capture_and_exit)
 
-		self.set_threshold_button = QtGui.QPushButton(self.centralwidget)
+		self.set_threshold_button = QtWidgets.QPushButton(self.centralwidget)
 		self.set_threshold_button.setGeometry(QtCore.QRect(140, 140, 121, 41))
 		self.set_threshold_button.setObjectName(_fromUtf8("set_threshold_button"))
 		self.set_threshold_button.clicked.connect(self.call_set_threshold)
 
-		self.exit_button = QtGui.QPushButton(self.centralwidget)
+		self.exit_button = QtWidgets.QPushButton(self.centralwidget)
 		self.exit_button.setGeometry(QtCore.QRect(140, 190, 121, 41))
 		self.exit_button.setObjectName(_fromUtf8("exit_button"))
 		self.exit_button.clicked.connect(self.call_exit_window)
 
 		SettingsWindow.setCentralWidget(self.centralwidget)
-		self.statusbar = QtGui.QStatusBar(SettingsWindow)
+		self.statusbar = QtWidgets.QStatusBar(SettingsWindow)
 		self.statusbar.setObjectName(_fromUtf8("statusbar"))
 		SettingsWindow.setStatusBar(self.statusbar)
 
@@ -93,8 +93,8 @@ class Ui_SettingsWindow(object):
 
 if __name__ == "__main__":
 	import sys
-	app = QtGui.QApplication(sys.argv)
-	SettingsWindow = QtGui.QMainWindow()
+	app = QtWidgets.QApplication(sys.argv)
+	SettingsWindow = QtWidgets.QMainWindow()
 	ui = Ui_SettingsWindow()
 	ui.setupUi(SettingsWindow)
 	SettingsWindow.show()
