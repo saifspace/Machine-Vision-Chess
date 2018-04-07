@@ -191,45 +191,7 @@ class ImageHandler:
 		self.cropped_image = self.captured_image[y1:y2, x1:x2]
 		cv2.imwrite(win_path, self.cropped_image)
 
-
 	def iterate_blocks(self):
-		"""
-		This method iterates through every block by using the thresholds that were setup.
-		For each block it detect the type and side for the piece if present.
-
-		Returns:
-			A dictionary containing a mapping from block id to piece info is returned.
-
-		"""
-
-		piece_square_info = {}
-		colour_detection = ColourDetector()
-
-		# print 'Detecting Pieces.'
-
-		for b in self.blocks:
-
-			threshold = self.block_id_threshold_dictionary[b]
-			tuple_one = threshold[0]
-			tuple_two = threshold[1]
-
-			x1 = tuple_one[0]
-			x2 = tuple_two[0]
-			y1 = tuple_one[1]
-			y2 = tuple_two[1]
-
-			cropped_image = self.captured_image[y1:y2, x1:x2]
-			cropped_image_hsv = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2HSV)
-
-			# Colour Detection method applied here: Mask, Closest colour threshold or Image Classification.
-
-			piece = colour_detection.apply_masks_and_return_dominant(cropped_image_hsv)
-
-			if(piece[0] != 'None'):
-				piece_square_info[b] = colour_detection.get_piece_dictionary_from_colour(piece[0]) # a dictionary mapping block id to piece info dictionary.
-		return piece_square_info
-
-	def new_iterate_blocks(self):
 
 		piece_square_info = {}
 		colour_detection = ColourDetector()
