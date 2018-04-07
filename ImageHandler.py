@@ -41,13 +41,8 @@ class ImageHandler:
 		self.block_id_threshold_dictionary = {}
 		self.block_thresholds = {}
 
-		# self.captured_image_path_mac = '/Users/omgitsmotrix/Desktop/finalYearProject/preperation/image-processing/flood_light_day7/captured_image/board.png'
-		# self.captured_image_path_win = 'C:\Users\Saif\Desktop\\finalyearproject\preperation\image-processing\\flood_light_day7\captured_image\\board.png'
 		self.captured_image_path_mac = os.getcwd() + '/Resources/CapturedImage/board.png'
 		self.captured_image_path_win = os.getcwd() + '\Resources\CapturedImage\\board.png'
-
-		# self.test_path_mac = '/Users/omgitsmotrix/Desktop/finalYearProject/preperation/image-processing/flood_light_day7/board.png'
-		# self.test_path_win = 'C:\Users\Saif\Desktop\\finalyearproject\preperation\image-processing\\flood_light_day7\\board.png'
 
 		self.captured_image = ''
 		self.cropped_image = ''
@@ -77,20 +72,16 @@ class ImageHandler:
 			cv2.imshow('FEED', feed)
 
 			if len(self.block_thresholds) == 64:
-				# print self.block_thresholds
 				i = 1
 				for b in self.blocks:
 					cv2.rectangle(feed, (self.block_thresholds[i][0] + self.crop_x_value, self.block_thresholds[i][1] + self.crop_y_value), (self.block_thresholds[i][2] + self.crop_x_value, self.block_thresholds[i][3] + self.crop_y_value), (255,255,255),1)
-					# x = ((self.block_thresholds[i][0]) + (self.block_thresholds[i][2]))/2 + self.crop_x_value
-					# y = ((self.block_thresholds[i][1]) + (self.block_thresholds[i][3]))/2 + self.crop_y_value
-					# cv2.rectangle(feed, (x-15, y-10), (x+15, y+10), (255, 255, 255), 1)
 					i = i + 1
 
 			cv2.imshow("FEED", feed) # update the feed here with drawn thresholds set.
 
 			if cv2.waitKey(33) == ord('c') or self.exit == True:
 				cv2.imwrite(self.captured_image_path_win, feed)
-				# print 'Image Captured.'
+				print('Image Captured.')
 				break
 
 		self.set_exit_false()
@@ -243,13 +234,11 @@ class ImageHandler:
 		piece_square_info = {}
 		colour_detection = ColourDetector()
 
-		# print 'Detecting Pieces.'
+		print('Detecting Pieces.')
 
 		for b in self.reverse_blocks:
 
 			threshold = self.block_id_threshold_dictionary[b]
-
-			# print b + ' ' + str(threshold)
 
 			x1 = threshold[0]
 			x2 = threshold[2]
@@ -275,7 +264,7 @@ class ImageHandler:
 		mac_path = os.getcwd() + "/Resources/CapturedImage/piece.png"
 		win_path = os.getcwd() + "\Resources\CapturedImage\piece.png"
 
-		# print 'Detecting Pieces.'
+		print ('Detecting Pieces.')
 
 		for b in self.reverse_blocks:
 
@@ -312,11 +301,9 @@ class ImageHandler:
 		i = 1
 		for count, b in enumerate(self.reverse_blocks):
 
-			# print b
 			if count in self.block_intervals:
 				i = (self.block_intervals.index(count)) + 2
 
-			# print i
 			self.block_id_threshold_dictionary[b] = self.block_thresholds[i]
 
 			i+=8
