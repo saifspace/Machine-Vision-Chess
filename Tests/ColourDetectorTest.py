@@ -20,6 +20,8 @@ class ColourDetectorTest(unittest.TestCase):
 		w_king = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/w_king.png'), cv2.COLOR_BGR2HSV)
 		w_queen = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/w_queen.png'), cv2.COLOR_BGR2HSV)
 
+		empty = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/empty.png'), cv2.COLOR_BGR2HSV)
+
 		colour_detector_test = ColourDetector()
 
 		self.assertEqual(colour_detector_test.apply_masks_and_return_dominant(b_pawn)[0], "EG")
@@ -36,6 +38,7 @@ class ColourDetectorTest(unittest.TestCase):
 		self.assertEqual(colour_detector_test.apply_masks_and_return_dominant(w_king)[0], "CEROLB")
 		self.assertEqual(colour_detector_test.apply_masks_and_return_dominant(w_queen)[0], "PINK")
 
+		self.assertEqual(colour_detector_test.apply_masks_and_return_dominant(empty)[0], "None")
 
 
 
