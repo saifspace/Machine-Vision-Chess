@@ -42,7 +42,7 @@ class Ui_SettingsWindow(object):
 		self.image_handler.set_thresholds()
 		self.image_handler.crop_and_save()
 		self.image_handler.slice_image()
-		self.image_handler.new_create_block_id_threshold_dictionary()
+		self.image_handler.create_block_id_threshold_dictionary()
 
 	def call_exit_window(self):
 		self.image_handler.close_all_windows()

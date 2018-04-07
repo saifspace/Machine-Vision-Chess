@@ -55,7 +55,7 @@ class Ui_MainWindow(object):
 		self.image_handler.load_captured_image(flag='win')
 
 	def call_iterate_blocks(self):
-		piece_square_info = self.image_handler.new_iterate_blocks()
+		piece_square_info = self.image_handler.iterate_blocks()
 		chess.clear_setup()
 		for s in piece_square_info.keys():
 			chess.put(piece_square_info[s], s)
