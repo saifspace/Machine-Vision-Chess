@@ -270,8 +270,6 @@ class ImageHandler:
 
 			threshold = self.block_id_threshold_dictionary[b]
 
-			# print b + ' ' + str(threshold)
-
 			x1 = threshold[0] + self.crop_x_value
 			x2 = threshold[2] + self.crop_x_value
 			y1 = threshold[1] + self.crop_y_value
