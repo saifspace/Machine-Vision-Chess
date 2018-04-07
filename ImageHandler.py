@@ -159,20 +159,6 @@ class ImageHandler:
 				break
 		cv2.destroyAllWindows()
 
-
-	def create_block_id_threshold_dictionary(self):
-		"""
-		This method creates a map from a block id to its block threshold.
-
-		Returns:
-			Nothing, None.
-		"""
-
-		i = 0
-		for b in self.blocks:
-			self.block_id_threshold_dictionary[b] = self.crop_thresholds[i], self.crop_thresholds[i+1]
-			i+=2
-
 	def crop_and_save(self):
 		tuple_one = self.crop_thresholds[0]
 		tuple_two = self.crop_thresholds[1]
@@ -256,7 +242,7 @@ class ImageHandler:
 		cropped_image_path = win_path
 		self.block_thresholds = image_slicer.slice(cropped_image_path, 64)
 
-	def new_create_block_id_threshold_dictionary(self):
+	def create_block_id_threshold_dictionary(self):
 
 		i = 1
 		for count, b in enumerate(self.reverse_blocks):
