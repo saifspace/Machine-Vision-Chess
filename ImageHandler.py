@@ -42,7 +42,7 @@ class ImageHandler:
 		self.block_thresholds = {}
 
 		self.captured_image_path_mac = os.getcwd() + '/Resources/CapturedImage/board.png'
-		self.captured_image_path_win = os.getcwd() + '\Resources\CapturedImage\\board.png'
+		self.captured_image_path_win = os.getcwd() + '/Resources/CapturedImage/board.png'
 
 		self.captured_image = ''
 		self.cropped_image = ''
@@ -163,7 +163,7 @@ class ImageHandler:
 		tuple_one = self.crop_thresholds[0]
 		tuple_two = self.crop_thresholds[1]
 
-		mac_path = os.getcwd() + '/Resources/CapturedImage/board.png'
+		mac_path = os.getcwd() + '/Resources/CapturedImage/cropped_board.png'
 		win_path = os.getcwd() + '\Resources\CapturedImage\\board.png'
 
 		x1 = tuple_one[0]
@@ -175,7 +175,7 @@ class ImageHandler:
 		self.crop_y_value = y1
 
 		self.cropped_image = self.captured_image[y1:y2, x1:x2]
-		cv2.imwrite(win_path, self.cropped_image)
+		cv2.imwrite(mac_path, self.cropped_image)
 
 	def iterate_blocks(self):
 
@@ -188,10 +188,10 @@ class ImageHandler:
 
 			threshold = self.block_id_threshold_dictionary[b]
 
-			x1 = threshold[0]
-			x2 = threshold[2]
-			y1 = threshold[1]
-			y2 = threshold[3]
+			x1 = threshold[0] + self.crop_x_value
+			x2 = threshold[2] + self.crop_x_value
+			y1 = threshold[1] + self.crop_y_value
+			y2 = threshold[3] + self.crop_y_value
 
 
 			cropped_image = cv2.imread(os.getcwd() + '/Resources/CapturedImage/board.png')
@@ -226,7 +226,7 @@ class ImageHandler:
 
 			cropped_image = cv2.imread(os.getcwd() + '/Resources/CapturedImage/board.png')
 
-			cv2.imwrite(os.getcwd()+ "\Resources\CapturedImage\\"+b+".png" ,  cropped_image[y1:y2, x1:x2])
+			# cv2.imwrite(os.getcwd()+ "\Resources\CapturedImage\\"+b+".png" ,  cropped_image[y1:y2, x1:x2])
 			cv2.imwrite(win_path, cropped_image[y1:y2, x1:x2])
 			piece = (predict_label(win_path)).replace(" ", "")
 
@@ -236,10 +236,10 @@ class ImageHandler:
 
 
 	def slice_image(self):
-		mac_path = os.getcwd() + '/Resources/CapturedImage/board.png'
+		mac_path = os.getcwd() + '/Resources/CapturedImage/cropped_board.png'
 		win_path = os.getcwd() + '\Resources\CapturedImage\\board.png'
 
-		cropped_image_path = win_path
+		cropped_image_path = mac_path
 		self.block_thresholds = image_slicer.slice(cropped_image_path, 64)
 
 	def create_block_id_threshold_dictionary(self):
