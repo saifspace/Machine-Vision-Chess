@@ -134,11 +134,11 @@ class Ui_MainWindow(object):
 		self.prediction_text.setText(_fromUtf8(""))
 		self.prediction_text.setObjectName(_fromUtf8("prediction_text"))
 		self.prediction_label = QtWidgets.QLabel(self.centralwidget)
-		self.prediction_label.setGeometry(QtCore.QRect(10, 440, 71, 31))
+		self.prediction_label.setGeometry(QtCore.QRect(5, 440, 71, 31))
 
 		font = QtGui.QFont()
 		font.setFamily(_fromUtf8("Arial"))
-		font.setPointSize(14)
+		font.setPointSize(11)
 		font.setBold(False)
 		font.setItalic(False)
 		font.setWeight(50)
