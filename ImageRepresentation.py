@@ -32,9 +32,6 @@ def create_image(setup_dict):
 		print(value)
 		piece = value[1] + '_' + value[0]
 		position = block_dict[key]
-		# print key
-		# print value
-		# print position
 		foreground = Image.open(pieces_paths[piece])
 		background.paste(foreground, position, foreground)
 	background.save(os.getcwd() + '/Resources/' + 'modifiedChessboard.png')
