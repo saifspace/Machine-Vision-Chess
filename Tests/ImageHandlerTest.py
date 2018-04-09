@@ -45,7 +45,7 @@ class ImageqHandlerTest(unittest.TestCase):
 		self.assertNotEqual(len(self.image_handler.captured_image), 0)
 
 	def test_set_thresholds(self):
-		self.assertNotEqual(len(self.image_handler.crop_thresholds), 64)
+		self.assertEqual(len(self.image_handler.crop_thresholds), 2)
 
 	def test_crop_and_save(self):
 		self.image_handler.crop_and_save()

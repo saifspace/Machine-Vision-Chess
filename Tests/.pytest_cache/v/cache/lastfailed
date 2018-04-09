@@ -1,5 +1,1 @@
-{
-  "ImageHandlerTest.py::ImageqHandlerTest::test_crop_and_save": true,
-  "ImageHandlerTest.py::ImageqHandlerTest::test_iterate_blocks": true,
-  "ImageHandlerTest.py::ImageqHandlerTest::test_slice_image": true
-}
+{}

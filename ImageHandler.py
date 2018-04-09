@@ -150,7 +150,7 @@ class ImageHandler:
 		tuple_one = self.crop_thresholds[0]
 		tuple_two = self.crop_thresholds[1]
 
-		win_path = os.getcwd() + '\Resources\CapturedImage\\board.png'
+		win_path = os.getcwd() + '\Resources\CapturedImage\cropped_board.png'
 
 		x1 = tuple_one[0]
 		x2 = tuple_two[0]
