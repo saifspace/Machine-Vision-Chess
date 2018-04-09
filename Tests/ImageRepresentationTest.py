@@ -2,7 +2,7 @@ import os
 import sys
 import unittest
 from ImageRepresentation import create_image
-sys.path.append(os.getcwd() + '/../../Libraries/chess_helper')
+sys.path.append(os.getcwd() + '\..\..\Libraries/chess_helper')
 import chess
 
 
@@ -15,11 +15,11 @@ class ImageRepresentationTest(unittest.TestCase):
 
 	@classmethod
 	def tearDownClass(cls):
-		os.remove(os.getcwd() + "/Resources/modifiedChessboard.png")
+		os.remove(os.getcwd() + "\Resources\modifiedChessboard.png")
 
 	def test_create_image(self):
 		create_image(self.test_setup)
-		self.assertTrue(os.path.exists(os.getcwd() + "/Resources/modifiedChessboard.png"))
+		self.assertTrue(os.path.exists(os.getcwd() + "\Resources\modifiedChessboard.png"))
 
 
 if __name__ == '__main__':

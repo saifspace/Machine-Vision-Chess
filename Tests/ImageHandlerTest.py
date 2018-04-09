@@ -32,12 +32,12 @@ class ImageqHandlerTest(unittest.TestCase):
 											  'e8': (308, 0, 385, 78), 'h3': (539, 390, 616, 468), 'a6': (0, 156, 77, 234), 'b8': (77, 0, 154, 78)}
 
 		self.image_handler = ImageHandler()
-		self.image_handler.load_captured_image(flag='win')
+		self.image_handler.load_captured_image()
 		self.image_handler.set_thresholds()
 
 	@classmethod
 	def tearDownClass(cls):
-		os.remove(os.getcwd() + "/Resources/CapturedImage/cropped_board.png")
+		os.remove(os.getcwd() + "\Resources\CapturedImage\cropped_board.png")
 
 
 	def test_load_captured_image(self):
@@ -49,7 +49,7 @@ class ImageqHandlerTest(unittest.TestCase):
 
 	def test_crop_and_save(self):
 		self.image_handler.crop_and_save()
-		self.assertTrue(os.path.exists(os.getcwd() + "/Resources/CapturedImage/cropped_board.png"))
+		self.assertTrue(os.path.exists(os.getcwd() + "\Resources\CapturedImage\cropped_board.png"))
 
 	def test_slice_image(self):
 		self.image_handler.slice_image()

@@ -6,21 +6,21 @@ import cv2
 class ColourDetectorTest(unittest.TestCase):
 
 	def test_apply_masks_and_return_dominant(self):
-		b_pawn = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/b_pawn.png'), cv2.COLOR_BGR2HSV)
-		b_rook =  cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/b_rook.png'), cv2.COLOR_BGR2HSV)
-		b_knight =  cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/b_knight.png'), cv2.COLOR_BGR2HSV)
-		b_bishop =  cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/b_bishop.png'), cv2.COLOR_BGR2HSV)
-		b_king = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/b_king.png'), cv2.COLOR_BGR2HSV)
-		b_queen = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/b_queen.png'), cv2.COLOR_BGR2HSV)
+		b_pawn = cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\\b_pawn.png'), cv2.COLOR_BGR2HSV)
+		b_rook =  cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\\b_rook.png'), cv2.COLOR_BGR2HSV)
+		b_knight =  cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\\b_knight.png'), cv2.COLOR_BGR2HSV)
+		b_bishop =  cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\\b_bishop.png'), cv2.COLOR_BGR2HSV)
+		b_king = cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\\b_king.png'), cv2.COLOR_BGR2HSV)
+		b_queen = cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\\b_queen.png'), cv2.COLOR_BGR2HSV)
 
-		w_pawn = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/w_pawn.png'), cv2.COLOR_BGR2HSV)
-		w_rook = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/w_rook.png'), cv2.COLOR_BGR2HSV)
-		w_knight = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/w_knight.png'), cv2.COLOR_BGR2HSV)
-		w_bishop = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/w_bishop.png'), cv2.COLOR_BGR2HSV)
-		w_king = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/w_king.png'), cv2.COLOR_BGR2HSV)
-		w_queen = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/w_queen.png'), cv2.COLOR_BGR2HSV)
+		w_pawn = cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\w_pawn.png'), cv2.COLOR_BGR2HSV)
+		w_rook = cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\w_rook.png'), cv2.COLOR_BGR2HSV)
+		w_knight = cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\w_knight.png'), cv2.COLOR_BGR2HSV)
+		w_bishop = cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\w_bishop.png'), cv2.COLOR_BGR2HSV)
+		w_king = cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\w_king.png'), cv2.COLOR_BGR2HSV)
+		w_queen = cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\w_queen.png'), cv2.COLOR_BGR2HSV)
 
-		empty = cv2.cvtColor(cv2.imread('./Resources/ColourDetectorTest/empty.png'), cv2.COLOR_BGR2HSV)
+		empty = cv2.cvtColor(cv2.imread('.\Resources\ColourDetectorTest\empty.png'), cv2.COLOR_BGR2HSV)
 
 		colour_detector_test = ColourDetector()
 
