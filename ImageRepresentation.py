@@ -1,55 +1,5 @@
-import image_slicer
 import os
 from PIL import Image
-
-
-
-class ChessboardImage:
-
-	def __init__(self):
-
-		self.reverse_blocks = [
-			'a8', 'a7', 'a6', 'a5', 'a4', 'a3', 'a2', 'a1',
-			'b8', 'b7', 'b6', 'b5', 'b4', 'b3', 'b2', 'b1',
-			'c8', 'c7', 'c6', 'c5', 'c4', 'c3', 'c2', 'c1',
-			'd8', 'd7', 'd6', 'd5', 'd4', 'd3', 'd2', 'd1',
-			'e8', 'e7', 'e6', 'e5', 'e4', 'e3', 'e2', 'e1',
-			'f8', 'f7', 'f6', 'f5', 'f4', 'f3', 'f2', 'f1',
-			'g8', 'g7', 'g6', 'g5', 'g4', 'g3', 'g2', 'g1',
-			'h8', 'h7', 'h6', 'h5', 'h4', 'h3', 'h2', 'h1']
-
-		self.block_intervals = [8, 16, 24, 32, 40, 48, 56]
-
-		self.block_id_threshold_dictionary = {}
-		self.block_thresholds = {}
-
-		self.board_image_path = ''
-		self.board_image = Image.open(self.board_image_path)
-		self.piece_image = Image.open('')
-
-
-
-
-	def set_block_thresholds(self):
-		self.block_thresholds = image_slicer.slice(self.board_image_path, 64)
-
-	def create_block_id_threshold_dictionary(self):
-		i = 1
-		for count, b in enumerate(self.reverse_blocks):
-
-			# print b
-			if count in self.block_intervals:
-				i = (self.block_intervals.index(count)) + 2
-
-			# print i
-			self.block_id_threshold_dictionary[b] = self.block_thresholds[i]
-
-			i+=8
-
-	def put_piece(self):
-		return ''
-
-
 
 # (x,y), where x = +65 , y = +65
 
