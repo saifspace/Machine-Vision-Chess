@@ -13,9 +13,9 @@ class ImageRepresentationTest(unittest.TestCase):
 		chess.load('rnbqkbnr/ppppppp1/7p/8/8/1P6/P1PPPPPP/RNBQKBNR w KQkq - 0 1')
 		self.test_setup = chess.get_setup()
 
-	# @classmethod
-	# def tearDownClass(cls):
-	# 	os.remove(os.getcwd() + "\Resources\modifiedChessboard.png")
+	@classmethod
+	def tearDownClass(cls):
+		os.remove(os.getcwd() + "\Resources\modifiedChessboard.png")
 
 	def test_create_image(self):
 		create_image(self.test_setup)
