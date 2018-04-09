@@ -8,8 +8,6 @@
 import sys
 import os
 
-# path for Mac
-sys.path.append(os.getcwd() + '/Libraries/chess_helper')
 # path for Windows
 sys.path.append(os.getcwd() + '\Libraries\chess_helper')
 
@@ -63,7 +61,7 @@ class Ui_MainWindow(object):
 		print (chess.ascii())
 		setup = chess.get_setup()
 		ImageRepresentation.create_image(setup)
-		self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "/resources/modifiedChessboard.png"))
+		self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
 
 	def call_ml_iterate_blocks(self):
 		piece_square_info = self.image_handler.ml_iterate_blocks()
@@ -74,7 +72,7 @@ class Ui_MainWindow(object):
 		print (chess.ascii())
 		setup = chess.get_setup()
 		ImageRepresentation.create_image(setup)
-		self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "/resources/modifiedChessboard.png"))
+		self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
 
 
 	def setupUi(self, MainWindow):
@@ -87,7 +85,7 @@ class Ui_MainWindow(object):
 		self.board_image_label.setGeometry(QtCore.QRect(295, 2, 500, 500))
 		self.board_image_label.setFrameShape(QtWidgets.QFrame.Box)
 		self.board_image_label.setObjectName(_fromUtf8("board_image_label"))
-		self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "/resources/chessboard2.png"))
+		self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\chessboard2.png"))
 
 		self.video_button = QtWidgets.QPushButton(self.centralwidget)
 		self.video_button.setGeometry(QtCore.QRect(0, 80, 221, 41))

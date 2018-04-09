@@ -41,8 +41,7 @@ class ImageHandler:
 		self.block_id_threshold_dictionary = {}
 		self.block_thresholds = {}
 
-		self.captured_image_path_mac = os.getcwd() + '/Resources/CapturedImage/board.png'
-		self.captured_image_path_win = os.getcwd() + '/Resources/CapturedImage/board.png'
+		self.captured_image_path_win = os.getcwd() + '\Resources\CapturedImage\\board.png'
 
 		self.captured_image = ''
 		self.cropped_image = ''
@@ -98,19 +97,7 @@ class ImageHandler:
 			Nothing, None.
 		"""
 
-		path = self.captured_image_path_mac
-		if flag == 'win':
-			path = self.captured_image_path_win
-		elif flag == 'win_test':
-			path = self.test_path_win
-		elif flag == 'mac_test':
-			path = self.test_path_mac
-		elif flag == '1':
-			path = 'C:\\Users\\Saif\\Desktop\\1.png'
-		elif flag == '2':
-			path = 'C:\\Users\\Saif\\Desktop\\2.png'
-		elif flag == '3':
-			path = 'C:\\Users\\Saif\\Desktop\\3.png'
+		path = self.captured_image_path_win
 
 		self.captured_image = cv2.imread(path)
 
@@ -163,7 +150,6 @@ class ImageHandler:
 		tuple_one = self.crop_thresholds[0]
 		tuple_two = self.crop_thresholds[1]
 
-		mac_path = os.getcwd() + '/Resources/CapturedImage/cropped_board.png'
 		win_path = os.getcwd() + '\Resources\CapturedImage\\board.png'
 
 		x1 = tuple_one[0]
@@ -175,7 +161,7 @@ class ImageHandler:
 		self.crop_y_value = y1
 
 		self.cropped_image = self.captured_image[y1:y2, x1:x2]
-		cv2.imwrite(mac_path, self.cropped_image)
+		cv2.imwrite(win_path, self.cropped_image)
 
 	def iterate_blocks(self):
 
@@ -193,8 +179,9 @@ class ImageHandler:
 			y1 = threshold[1] + self.crop_y_value
 			y2 = threshold[3] + self.crop_y_value
 
+			win_path = os.getcwd() + '\Resources\CapturedImage\\board.png'
 
-			cropped_image = cv2.imread(os.getcwd() + '/Resources/CapturedImage/board.png')
+			cropped_image = cv2.imread(win_path)
 			cropped_image_hsv = cv2.cvtColor(cropped_image[y1:y2, x1:x2], cv2.COLOR_BGR2HSV)
 
 			# Colour Detection method applied here: Mask, Closest colour threshold or Image Classification.
@@ -209,7 +196,6 @@ class ImageHandler:
 		piece_square_info = {}
 		colour_detection = ColourDetector()
 
-		mac_path = os.getcwd() + "/Resources/CapturedImage/piece.png"
 		win_path = os.getcwd() + "\Resources\CapturedImage\piece.png"
 
 		print ('Detecting Pieces.')
@@ -223,8 +209,7 @@ class ImageHandler:
 			y1 = threshold[1] + self.crop_y_value
 			y2 = threshold[3] + self.crop_y_value
 
-
-			cropped_image = cv2.imread(os.getcwd() + '/Resources/CapturedImage/board.png')
+			cropped_image = cv2.imread(os.getcwd() + '\Resources\CapturedImage\\board.png')
 
 			# cv2.imwrite(os.getcwd()+ "\Resources\CapturedImage\\"+b+".png" ,  cropped_image[y1:y2, x1:x2])
 			cv2.imwrite(win_path, cropped_image[y1:y2, x1:x2])
@@ -236,11 +221,9 @@ class ImageHandler:
 
 
 	def slice_image(self):
-		mac_path = os.getcwd() + '/Resources/CapturedImage/cropped_board.png'
 		win_path = os.getcwd() + '\Resources\CapturedImage\\board.png'
 
-		cropped_image_path = mac_path
-		self.block_thresholds = image_slicer.slice(cropped_image_path, 64)
+		self.block_thresholds = image_slicer.slice(win_path, 64)
 
 	def create_block_id_threshold_dictionary(self):
 

@@ -18,15 +18,15 @@ block_dict = {
 			  }
 
 pieces_paths = {
-	'w_p': os.getcwd() + '/Resources/pieces/w_pawn.png', 'w_n': os.getcwd() +'/Resources/pieces/w_knight.png', 'w_b':os.getcwd() + '/Resources/pieces/w_bishop.png',
-	'w_r': os.getcwd() + '/Resources/pieces/w_rook.png', 'w_q': os.getcwd() +'/Resources/pieces/w_queen.png', 'w_k': os.getcwd() +'/Resources/pieces/w_king.png',
-	'b_p': os.getcwd() + '/Resources/pieces/b_pawn.png', 'b_n': os.getcwd() +'/Resources/pieces/b_knight.png', 'b_b':os.getcwd() + '/Resources/pieces/b_bishop.png',
-	'b_r': os.getcwd() + '/Resources/pieces/b_rook.png', 'b_q': os.getcwd() +'/Resources/pieces/b_queen.png', 'b_k': os.getcwd() +'/Resources/pieces/b_king.png'
+	'w_p': os.getcwd() + '\Resources\pieces\w_pawn.png', 'w_n': os.getcwd() + '\Resources\pieces\w_knight.png', 'w_b':os.getcwd() + '\Resources\pieces\w_bishop.png',
+	'w_r': os.getcwd() + '\Resources\pieces\w_rook.png', 'w_q': os.getcwd() + '\Resources\pieces\w_queen.png', 'w_k': os.getcwd() + '\Resources\pieces\w_king.png',
+	'b_p': os.getcwd() + '\Resources\pieces\\b_pawn.png', 'b_n': os.getcwd() + '\Resources\pieces\\b_knight.png', 'b_b':os.getcwd() + '\Resources\pieces\\b_bishop.png',
+	'b_r': os.getcwd() + '\Resources\pieces\\b_rook.png', 'b_q': os.getcwd() + '\Resources\pieces\\b_queen.png', 'b_k': os.getcwd() + '\Resources\pieces\\b_king.png'
 }
 
 
 def create_image(setup_dict):
-	background = Image.open(os.getcwd() + '/Resources/chessboard2.png')
+	background = Image.open(os.getcwd() + '\Resources\chessboard2.png')
 	for key, value in setup_dict.items():
 		print(key)
 		print(value)
@@ -34,4 +34,4 @@ def create_image(setup_dict):
 		position = block_dict[key]
 		foreground = Image.open(pieces_paths[piece])
 		background.paste(foreground, position, foreground)
-	background.save(os.getcwd() + '/Resources/' + 'modifiedChessboard.png')
+	background.save(os.getcwd() + '\Resources\\' + 'modifiedChessboard.png')
