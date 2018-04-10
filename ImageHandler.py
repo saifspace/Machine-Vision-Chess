@@ -221,8 +221,7 @@ class ImageHandler:
 
 
 	def slice_image(self):
-		win_path = os.getcwd() + '\Resources\CapturedImage\\board.png'
-
+		win_path = os.getcwd() + '\Resources\CapturedImage\\cropped_board.png'
 		self.block_thresholds = image_slicer.slice(win_path, 64)
 
 	def create_block_id_threshold_dictionary(self):
