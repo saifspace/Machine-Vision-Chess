@@ -6,7 +6,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtWidgets, QtWidgets
+from PyQt5 import QtCore, QtWidgets
+QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 
 try:
 	_fromUtf8 = QtCore.QString.fromUtf8
@@ -50,7 +51,7 @@ class Ui_SettingsWindow(object):
 
 	def setupUi(self, SettingsWindow):
 		SettingsWindow.setObjectName(_fromUtf8("SettingsWindow"))
-		SettingsWindow.resize(427, 250)
+		SettingsWindow.setFixedSize(427, 270)
 		self.settings_window = SettingsWindow
 		self.centralwidget = QtWidgets.QWidget(SettingsWindow)
 		self.centralwidget.setObjectName(_fromUtf8("centralwidget"))

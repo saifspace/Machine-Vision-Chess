@@ -15,9 +15,11 @@ import chess
 import stockfishchess as engine
 import ImageRepresentation
 
-from PyQt5 import QtCore, QtWidgets, QtWidgets, QtGui
+from PyQt5 import QtCore, QtWidgets, QtGui
 from SettingsWindow import Ui_SettingsWindow
 from ImageHandler import ImageHandler
+
+QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 
 try:
 	_fromUtf8 = QtCore.QString.fromUtf8
@@ -83,7 +85,7 @@ class Ui_MainWindow(object):
 
 	def setupUi(self, MainWindow):
 		MainWindow.setObjectName(_fromUtf8("MainWindow"))
-		MainWindow.resize(799, 557)
+		MainWindow.setFixedSize(799, 557)
 		self.centralwidget = QtWidgets.QWidget(MainWindow)
 		self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
 
