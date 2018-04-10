@@ -69,32 +69,56 @@ def load_labels(label_file):
   return label
 
 
+ml_model = None
+ml_labels = None
+tf_session = None
+input_operation = None
+output_operation = None
 
 
+def load_model():
+	global ml_model
+	global ml_labels
+	global tf_session
+	global input_operation
+	global output_operation
+
+	input_layer = "input"
+	output_layer = "final_result"
+
+	model_file = os.getcwd() + "\Libraries/machine_learning\\retrained_graph.pb"
+	label_file = os.getcwd() + "\Libraries\machine_learning\\retrained_labels.txt"
+
+	input_name = "import/" + input_layer
+	output_name = "import/" + output_layer
+
+	ml_model = load_graph(model_file)
+	ml_labels = load_labels(label_file)
+
+
+	input_operation = ml_model.get_operation_by_name(input_name);
+	output_operation = ml_model.get_operation_by_name(output_name);
 
 
 def predict_label(file_name):
-  label_file = os.getcwd() + "\Libraries\machine_learning\\retrained_labels.txt"
-  model_file = os.getcwd() + "\Libraries/machine_learning\\retrained_graph.pb"
-
+  global ml_model
+  global ml_labels
+  global tf_session
+  global input_operation
+  global output_operation
 
   input_height = 224
   input_width = 224
   input_mean = 128
   input_std = 128
-  input_layer = "input"
-  output_layer = "final_result"
-  graph = load_graph(model_file)
+
+  graph = ml_model
   t = read_tensor_from_image_file(file_name,
                                   input_height=input_height,
                                   input_width=input_width,
                                   input_mean=input_mean,
                                   input_std=input_std)
-  input_name = "import/" + input_layer
-  output_name = "import/" + output_layer
-  input_operation = graph.get_operation_by_name(input_name);
-  output_operation = graph.get_operation_by_name(output_name);
-
+  
   with tf.Session(graph=graph) as sess:
     start = time.time()
     results = sess.run(output_operation.outputs[0],{input_operation.outputs[0]: t})
@@ -102,7 +126,7 @@ def predict_label(file_name):
   results = np.squeeze(results)
 
   top_k = results.argsort()[-5:][::-1]
-  labels = load_labels(label_file)
+  labels = ml_labels
   print('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start))
 
   return (labels[top_k[0]])

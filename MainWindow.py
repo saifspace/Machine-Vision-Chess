@@ -14,6 +14,7 @@ sys.path.append(os.getcwd() + '\Libraries\chess_helper')
 import chess
 import stockfishchess as engine
 import ImageRepresentation
+from Libraries.machine_learning.label_image import load_model
 
 from PyQt5 import QtCore, QtWidgets, QtGui
 from SettingsWindow import Ui_SettingsWindow
@@ -200,6 +201,7 @@ class Ui_MainWindow(object):
 
 
 if __name__ == "__main__":
+	load_model()
 	import sys
 	app = QtWidgets.QApplication(sys.argv)
 	MainWindow = QtWidgets.QMainWindow()
