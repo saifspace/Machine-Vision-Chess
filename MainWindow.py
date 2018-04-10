@@ -12,6 +12,7 @@ import os
 sys.path.append(os.getcwd() + '\Libraries\chess_helper')
 
 import chess
+import stockfishchess as engine
 import ImageRepresentation
 
 from PyQt5 import QtCore, QtWidgets, QtWidgets, QtGui
@@ -73,6 +74,11 @@ class Ui_MainWindow(object):
 		setup = chess.get_setup()
 		ImageRepresentation.create_image(setup)
 		self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
+
+	def call_predict(self):
+		engine.set_fen("r1b1kr2/2ppQ1pp/p4p2/5p2/1pB5/5PPN/PP3K1P/RNB1R3 b - - 0 2")
+		response = engine.best_move()
+		self.prediction_text.setText(response)
 
 
 	def setupUi(self, MainWindow):
@@ -168,6 +174,7 @@ class Ui_MainWindow(object):
 		self.predict_button.setDefault(False)
 		self.predict_button.setFlat(False)
 		self.predict_button.setObjectName(_fromUtf8("predict_button"))
+		self.predict_button.clicked.connect(self.call_predict)
 
 		MainWindow.setCentralWidget(self.centralwidget)
 		self.statusbar = QtWidgets.QStatusBar(MainWindow)
