@@ -129,7 +129,7 @@ def predict_label(file_name):
   labels = ml_labels
   print('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start))
 
-  return (labels[top_k[0]])
+  return ( (labels[top_k[0]], labels[top_k[1]]) )
   # for i in top_k:
 	#   print(i)
 	#   print(labels[i], results[i])

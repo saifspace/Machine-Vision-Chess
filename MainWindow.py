@@ -14,6 +14,7 @@ sys.path.append(os.getcwd() + '\Libraries\chess_helper')
 import chess
 import stockfishchess as engine
 import ImageRepresentation
+from ColourDetector import Pieces
 from Libraries.machine_learning.label_image import load_model
 
 from PyQt5 import QtCore, QtWidgets, QtGui
@@ -83,6 +84,79 @@ class Ui_MainWindow(object):
 		response = engine.best_move()
 		self.prediction_text.setText(response)
 
+	def call_second_detect(self):
+
+		second_square_value_dict = self.image_handler.get_second_square_value_dict()
+
+		if (len(second_square_value_dict) == 0):
+			message_box = QtWidgets.QMessageBox()
+			message_box.move(MainWindow.rect().center())
+			message_box.question(message_box, 'Error', "No values: Run detect through Machine Learning first.", QtWidgets.QMessageBox.Ok)
+		elif (self.square_id_combo_box.currentText() == "Square ID"):
+			message_box = QtWidgets.QMessageBox()
+			message_box.move(MainWindow.rect().center())
+			message_box.question(message_box, 'Error', "No Square ID selected. Please select from first drop-down menu.", QtWidgets.QMessageBox.Ok)
+		else:
+			square_id = self.square_id_combo_box.currentText()
+			if (second_square_value_dict[square_id] == "empty"):
+				chess.remove(square_id)
+				setup = chess.get_setup()
+				ImageRepresentation.create_image(setup)
+				self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
+			elif (second_square_value_dict[square_id]['type'] == "k"):
+				colour = second_square_value_dict[square_id]['color']
+				message_box = QtWidgets.QMessageBox()
+				message_box.move(MainWindow.rect().center())
+				message_box.question(message_box, "Note", "Second value is " + colour + " King. If board doesn't update, remove existing " + colour + " King.", QtWidgets.QMessageBox.Ok)
+				chess.remove(square_id)
+				chess.put(second_square_value_dict[square_id], square_id)
+				setup = chess.get_setup()
+				ImageRepresentation.create_image(setup)
+				self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
+			else:
+				print('2nd value ', second_square_value_dict[square_id], " square id: ", square_id)
+				chess.remove(square_id)
+				chess.put(second_square_value_dict[square_id], square_id)
+				setup = chess.get_setup()
+				ImageRepresentation.create_image(setup)
+				self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
+
+	def call_manual_fix(self):
+
+		square_id = self.square_id_combo_box.currentText()
+		piece_type = self.piece_combo_box.currentText()
+		selection_checks = True
+		if (square_id == "Square ID"):
+			selection_checks = False
+			message_box = QtWidgets.QMessageBox()
+			message_box.move(MainWindow.rect().center())
+			message_box.question(message_box, 'Error', "No Square ID selected. Please select from first drop-down menu.", QtWidgets.QMessageBox.Ok)
+		if (piece_type == "Piece Type"):
+			selection_checks = False
+			message_box = QtWidgets.QMessageBox()
+			message_box.move(MainWindow.rect().center())
+			message_box.question(message_box, 'Error', "No Piece Type selected. Please select from second drop-down menu.", QtWidgets.QMessageBox.Ok)
+		if (piece_type == "empty" and selection_checks):
+			chess.remove(square_id)
+			setup = chess.get_setup()
+			ImageRepresentation.create_image(setup)
+			self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
+		elif ("king" in piece_type and selection_checks):
+			print("inserting KING")
+			message_box = QtWidgets.QMessageBox()
+			message_box.move(MainWindow.rect().center())
+			message_box.question(message_box, "Note","Value is " + piece_type[0] + " King. If board doesn't update, remove existing " + piece_type[0] + " King.", QtWidgets.QMessageBox.Ok)
+			chess.remove(square_id)
+			chess.put(Pieces[piece_type].value, square_id)
+			setup = chess.get_setup()
+			ImageRepresentation.create_image(setup)
+			self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
+		elif(selection_checks):
+			chess.remove(square_id)
+			chess.put(Pieces[piece_type].value, square_id)
+			setup = chess.get_setup()
+			ImageRepresentation.create_image(setup)
+			self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
 
 	def setupUi(self, MainWindow):
 		MainWindow.setObjectName(_fromUtf8("MainWindow"))
@@ -347,15 +421,19 @@ class Ui_MainWindow(object):
 		self.piece_combo_box.setGeometry(QtCore.QRect(0, 80, 141, 31))
 		self.piece_combo_box.setFrame(False)
 		self.piece_combo_box.setObjectName("piece_combo_box")
-		self.piece_combo_box.addItems(['Piece Type','wpawn', 'wrook', 'wknight', 'wbishop', 'wking', 'wqueen',
+		self.piece_combo_box.addItems(['Piece Type','empty' ,'wpawn', 'wrook', 'wknight', 'wbishop', 'wking', 'wqueen',
 									   'bpawn', 'brook', 'bknight', 'bbishop', 'bking', 'bqueen'])
 
 		self.second_detect_button = QtWidgets.QPushButton(self.manual_input_frame)
 		self.second_detect_button.setGeometry(QtCore.QRect(150, 50, 151, 31))
 		self.second_detect_button.setObjectName("second_detect_button")
+		self.second_detect_button.clicked.connect(self.call_second_detect)
+
 		self.manual_fix_button = QtWidgets.QPushButton(self.manual_input_frame)
 		self.manual_fix_button.setGeometry(QtCore.QRect(150, 80, 151, 31))
 		self.manual_fix_button.setObjectName("manual_fix_button")
+		self.manual_fix_button.clicked.connect(self.call_manual_fix)
+
 		self.fix_title_label = QtWidgets.QLabel(self.manual_input_frame)
 		self.fix_title_label.setGeometry(QtCore.QRect(115, 10, 100, 16))
 		self.fix_title_label.setObjectName("fix_title_label")

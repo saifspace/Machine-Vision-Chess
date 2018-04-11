@@ -41,6 +41,8 @@ class ImageHandler:
 		self.block_id_threshold_dictionary = {}
 		self.block_thresholds = {}
 
+		self.second_square_values = {}
+
 		self.captured_image_path_win = os.getcwd() + '\Resources\CapturedImage\\board.png'
 
 		self.captured_image = ''
@@ -213,10 +215,21 @@ class ImageHandler:
 
 			# cv2.imwrite(os.getcwd()+ "\Resources\CapturedImage\\"+b+".png" ,  cropped_image[y1:y2, x1:x2])
 			cv2.imwrite(win_path, cropped_image[y1:y2, x1:x2])
-			piece = (predict_label(win_path)).replace(" ", "")
+			top_two_predictions = predict_label(win_path)
+			piece_one = top_two_predictions[0].replace(" ", "")
+			piece_two = top_two_predictions[1].replace(" ", "")
 
-			if(piece != "empty"):
-				piece_square_info[b] = colour_detection.get_piece_dictionary_from_colour(piece)
+			# piece = (predict_label(win_path)).replace(" ", "")
+			# self.second_square_value[b] = colour_detection.get_piece_dictionary_from_colour(piece_two)
+
+			print("block: ", b,  " p1: ", piece_one, " p2: " , piece_two )
+			if(piece_two == "empty"):
+				self.second_square_values[b] = "empty"
+			else:
+				self.second_square_values[b] = colour_detection.get_piece_dictionary_from_colour(piece_two)
+
+			if(piece_one != "empty"):
+				piece_square_info[b] = colour_detection.get_piece_dictionary_from_colour(piece_one)
 		return piece_square_info
 
 
@@ -244,6 +257,9 @@ class ImageHandler:
 
 	def get_crop_thresholds(self):
 		return self.crop_thresholds
+
+	def get_second_square_value_dict(self):
+		return self.second_square_values
 
 	def close_all_windows(self):
 		cv2.destroyAllWindows()
