@@ -351,13 +351,13 @@ class Ui_MainWindow(object):
 									   'bpawn', 'brook', 'bknight', 'bbishop', 'bking', 'bqueen'])
 
 		self.second_detect_button = QtWidgets.QPushButton(self.manual_input_frame)
-		self.second_detect_button.setGeometry(QtCore.QRect(140, 50, 151, 31))
+		self.second_detect_button.setGeometry(QtCore.QRect(150, 50, 151, 31))
 		self.second_detect_button.setObjectName("second_detect_button")
 		self.manual_fix_button = QtWidgets.QPushButton(self.manual_input_frame)
-		self.manual_fix_button.setGeometry(QtCore.QRect(140, 80, 151, 31))
+		self.manual_fix_button.setGeometry(QtCore.QRect(150, 80, 151, 31))
 		self.manual_fix_button.setObjectName("manual_fix_button")
 		self.fix_title_label = QtWidgets.QLabel(self.manual_input_frame)
-		self.fix_title_label.setGeometry(QtCore.QRect(90, 10, 100, 16))
+		self.fix_title_label.setGeometry(QtCore.QRect(115, 10, 100, 16))
 		self.fix_title_label.setObjectName("fix_title_label")
 
 		MainWindow.setCentralWidget(self.centralwidget)
