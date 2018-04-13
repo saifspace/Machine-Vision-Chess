@@ -423,11 +423,6 @@ class Ui_MainWindow(object):
 		self.piece_combo_box.addItems(['Piece Type','empty' ,'wpawn', 'wrook', 'wknight', 'wbishop', 'wking', 'wqueen',
 									   'bpawn', 'brook', 'bknight', 'bbishop', 'bking', 'bqueen'])
 
-		self.second_detect_button = QtWidgets.QPushButton(self.manual_input_frame)
-		self.second_detect_button.setGeometry(QtCore.QRect(150, 50, 151, 31))
-		self.second_detect_button.setObjectName("second_detect_button")
-		self.second_detect_button.clicked.connect(self.call_second_detect)
-
 		self.manual_fix_button = QtWidgets.QPushButton(self.manual_input_frame)
 		self.manual_fix_button.setGeometry(QtCore.QRect(150, 80, 151, 31))
 		self.manual_fix_button.setObjectName("manual_fix_button")
@@ -841,7 +836,6 @@ class Ui_MainWindow(object):
 		self.capture_image_button.setText(_translate("MainWindow", "Capture Image", None))
 		self.predict_button.setText(_translate("MainWindow", "Predict", None))
 
-		self.second_detect_button.setText(_translate("MainWindow", "ML: Second Detect", None))
 		self.manual_fix_button.setText(_translate("MainWindow", "Manual Fix", None))
 		self.fix_title_label.setText(_translate("MainWindow", "Fix Chessboard", None))
 
