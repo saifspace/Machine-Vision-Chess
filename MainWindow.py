@@ -85,6 +85,10 @@ class Ui_MainWindow(object):
 		response = engine.best_move()
 		self.prediction_text.setText(response)
 
+	def updated_clicked_square(self, square):
+		self.clicked_square = square
+		self.call_second_detect()
+
 	def call_second_detect(self):
 
 		second_square_value_dict = self.image_handler.get_second_square_value_dict()
@@ -93,50 +97,6 @@ class Ui_MainWindow(object):
 			message_box = QtWidgets.QMessageBox()
 			message_box.move(MainWindow.rect().center())
 			message_box.question(message_box, 'Error', "No values: Run detect through Machine Learning first.", QtWidgets.QMessageBox.Ok)
-		elif (self.square_id_combo_box.currentText() == "Square ID"):
-			message_box = QtWidgets.QMessageBox()
-			message_box.move(MainWindow.rect().center())
-			message_box.question(message_box, 'Error', "No Square ID selected. Please select from first drop-down menu.", QtWidgets.QMessageBox.Ok)
-		else:
-			square_id = self.square_id_combo_box.currentText()
-			if (second_square_value_dict[square_id] == "empty"):
-				chess.remove(square_id)
-				setup = chess.get_setup()
-				ImageRepresentation.create_image(setup)
-				self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
-			elif (second_square_value_dict[square_id]['type'] == "k"):
-				colour = second_square_value_dict[square_id]['color']
-				message_box = QtWidgets.QMessageBox()
-				message_box.move(MainWindow.rect().center())
-				message_box.question(message_box, "Note", "Second value is " + colour + " King. If board doesn't update, remove existing " + colour + " King.", QtWidgets.QMessageBox.Ok)
-				chess.put(second_square_value_dict[square_id], square_id)
-				setup = chess.get_setup()
-				ImageRepresentation.create_image(setup)
-				self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
-			else:
-				print('2nd value ', second_square_value_dict[square_id], " square id: ", square_id)
-				chess.remove(square_id)
-				chess.put(second_square_value_dict[square_id], square_id)
-				setup = chess.get_setup()
-				ImageRepresentation.create_image(setup)
-				self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
-
-	def updated_clicked_square(self, square):
-		self.clicked_square = square
-		self.new_call_second_detect()
-
-	def new_call_second_detect(self):
-
-		second_square_value_dict = self.image_handler.get_second_square_value_dict()
-
-		if (len(second_square_value_dict) == 0):
-			message_box = QtWidgets.QMessageBox()
-			message_box.move(MainWindow.rect().center())
-			message_box.question(message_box, 'Error', "No values: Run detect through Machine Learning first.", QtWidgets.QMessageBox.Ok)
-		# elif (self.square_id_combo_box.currentText() == "Square ID"):
-		# 	message_box = QtWidgets.QMessageBox()
-		# 	message_box.move(MainWindow.rect().center())
-		# 	message_box.question(message_box, 'Error', "No Square ID selected. Please select from first drop-down menu.", QtWidgets.QMessageBox.Ok)
 		else:
 			square_id = self.clicked_square
 			if (second_square_value_dict[square_id] == "empty"):
