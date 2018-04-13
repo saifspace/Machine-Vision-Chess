@@ -424,7 +424,7 @@ class Ui_MainWindow(object):
 									   'bpawn', 'brook', 'bknight', 'bbishop', 'bking', 'bqueen'])
 
 		self.manual_fix_button = QtWidgets.QPushButton(self.manual_input_frame)
-		self.manual_fix_button.setGeometry(QtCore.QRect(150, 80, 151, 31))
+		self.manual_fix_button.setGeometry(QtCore.QRect(150, 65, 151, 31))
 		self.manual_fix_button.setObjectName("manual_fix_button")
 		self.manual_fix_button.clicked.connect(self.call_manual_fix)
 
