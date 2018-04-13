@@ -44,6 +44,8 @@ class Ui_MainWindow(object):
 		self.image_handler = ImageHandler()
 		self.ui.set_image_handler(self.image_handler)
 		self.clicked_square = ""
+		self.main_window_video_open = False
+		self.main_window = None
 
 
 	def openSettingsWindow(self):
@@ -52,11 +54,19 @@ class Ui_MainWindow(object):
 		self.window.show()
 
 	def call_capture_image(self):
+		self.main_window_video_open = True
 		self.image_handler.capture_image()
 
 	def call_capture_and_exit(self):
-		self.image_handler.set_exit_true()
-		self.image_handler.load_captured_image(flag='win')
+		if (self.main_window_video_open == True):
+			self.image_handler.set_exit_true()
+			self.image_handler.load_captured_image(flag='win')
+			self.main_window_video_open = False
+		else:
+			message_box = QtWidgets.QMessageBox()
+			message_box.move(self.main_window.rect().center())
+			message_box.question(message_box, 'Error', "Video Stream not open",
+								 QtWidgets.QMessageBox.Ok)
 
 	def call_iterate_blocks(self):
 		piece_square_info = self.image_handler.iterate_blocks()
@@ -162,6 +172,7 @@ class Ui_MainWindow(object):
 		MainWindow.setFixedSize(799, 695)
 		self.centralwidget = QtWidgets.QWidget(MainWindow)
 		self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
+		self.main_window = MainWindow
 
 		self.board_image_label = QtWidgets.QLabel(self.centralwidget)
 		self.board_image_label.setGeometry(QtCore.QRect(295, 2, 500, 500))

@@ -28,15 +28,26 @@ class Ui_SettingsWindow(object):
 	def __init__(self):
 		self.image_handler = None
 		self.settings_window = None
+		self.settings_window_video_open = False
 
 	def set_image_handler(self, imageHandler):
 		self.image_handler = imageHandler
 
 	def call_capture_image(self):
+		self.settings_window_video_open = True
 		self.image_handler.capture_image()
 
+
 	def call_capture_and_exit(self):
-		self.image_handler.set_exit_true()
+		if (self.settings_window_video_open == True):
+			self.image_handler.set_exit_true()
+			self.settings_window_video_open = False
+		else:
+			message_box = QtWidgets.QMessageBox()
+			message_box.move(self.settings_window.rect().center())
+			message_box.question(message_box, 'Error', "Video Stream not open",
+								 QtWidgets.QMessageBox.Ok)
+
 
 	def call_set_threshold(self):
 		self.image_handler.load_captured_image()
