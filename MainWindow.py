@@ -429,7 +429,7 @@ class Ui_MainWindow(object):
 		self.manual_fix_button.clicked.connect(self.call_manual_fix)
 
 		self.fix_title_label = QtWidgets.QLabel(self.manual_input_frame)
-		self.fix_title_label.setGeometry(QtCore.QRect(115, 10, 100, 16))
+		self.fix_title_label.setGeometry(QtCore.QRect(115, 10, 150, 16))
 		self.fix_title_label.setObjectName("fix_title_label")
 
 		self.a1_button = QtWidgets.QPushButton(self.centralwidget)
@@ -837,7 +837,7 @@ class Ui_MainWindow(object):
 		self.predict_button.setText(_translate("MainWindow", "Predict", None))
 
 		self.manual_fix_button.setText(_translate("MainWindow", "Manual Fix", None))
-		self.fix_title_label.setText(_translate("MainWindow", "Fix Chessboard", None))
+		self.fix_title_label.setText(_translate("MainWindow", "Manually Fix Chessboard", None))
 
 		self.a_label.setText(_translate("MainWindow", "a", None))
 		self.b_label.setText(_translate("MainWindow", "b", None))
