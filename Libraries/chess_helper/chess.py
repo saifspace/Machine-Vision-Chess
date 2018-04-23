@@ -272,7 +272,9 @@ def get_setup():
 
 def clear_setup():
     global board
+    global kings
     print("clear")
+    kings = {'w': EMPTY, 'b': EMPTY}
     board = [None] * 128
     update_setup(generate_fen())
 

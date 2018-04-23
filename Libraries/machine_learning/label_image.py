@@ -74,6 +74,7 @@ ml_labels = None
 tf_session = None
 input_operation = None
 output_operation = None
+sess = None
 
 
 def load_model():
@@ -82,6 +83,7 @@ def load_model():
 	global tf_session
 	global input_operation
 	global output_operation
+	global sess
 
 	input_layer = "input"
 	output_layer = "final_result"
@@ -98,6 +100,8 @@ def load_model():
 
 	input_operation = ml_model.get_operation_by_name(input_name);
 	output_operation = ml_model.get_operation_by_name(output_name);
+
+	sess = tf.Session(graph=ml_model)
 
 
 def predict_label(file_name):
@@ -119,10 +123,10 @@ def predict_label(file_name):
                                   input_mean=input_mean,
                                   input_std=input_std)
   
-  with tf.Session(graph=graph) as sess:
-    start = time.time()
-    results = sess.run(output_operation.outputs[0],{input_operation.outputs[0]: t})
-    end=time.time()
+  # with tf.Session(graph=graph) as sess:
+  start = time.time()
+  results = sess.run(output_operation.outputs[0],{input_operation.outputs[0]: t})
+  end=time.time()
   results = np.squeeze(results)
 
   top_k = results.argsort()[-5:][::-1]
