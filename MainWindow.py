@@ -84,7 +84,6 @@ class Ui_MainWindow(object):
 		self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
 
 	def call_predict(self):
-		# engine.set_fen("r1b1kr2/2ppQ1pp/p4p2/5p2/1pB5/5PPN/PP3K1P/RNB1R3 b - - 0 2")
 		fen = chess.fen()
 		engine.set_fen(fen)
 		response = engine.best_move()
