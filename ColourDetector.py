@@ -1,12 +1,11 @@
-import cv2
-import numpy as np
 from enum import Enum
-
+import numpy as np
+import cv2
 
 
 class Pieces(Enum):
 	"""
-	TODO: Add enum docstring 
+	Enum class to return dictionaries for the put function of the chess module.
 	"""
 	
 	SG_CB_GREY = {'type': 'p', 'color': 'w'}
@@ -78,8 +77,6 @@ class ColourDetector:
 		pixel_dictionary['SG_CB_GREY'] = sg_cb_grey_pixels
 		pixel_dictionary['OR'] = o_pixels
 		pixel_dictionary['CEROLB'] = cerolb_pixels
-	
-		# print pixel_dictionary
 	
 		maximum_key = 'None'
 		maximum_value = 0
@@ -274,18 +271,16 @@ class ColourDetector:
 		return non_zero_pixels
 
 
-	def get_piece_dictionary_from_colour(self,colour):
+	def get_piece_dictionary_from_enum(self,enum):
 		"""
-		This method takes in a colour decided by the dominant colour method and
-		returns a dictionary for the piece that maps to that colour.
+		This method takes in a enum value decided by the colour detection/machine learning technique and
+		returns a dictionary for the piece that maps to that enum.
 		
 		Args:
-			colour: a parameter representing a valid colour.
+			enum: a parameter representing a enum value from Pieces class.
 
 		Returns:
 			A dictionary that states the piece 'type' and colour (side) i.e. white or black
 
 		"""
-		return Pieces[colour].value 
-
-	
+		return Pieces[enum].value

@@ -1,14 +1,14 @@
 from pystockfish import *
 
-deep = Engine()
-deep.newgame()
+engine = Engine()
+engine.newgame()
 
 def set_fen(fen):
 	print(fen)
-	deep.setfenposition(fen)
+	engine.setfenposition(fen)
 
 def best_move():
 	try:
-		return deep.bestmove()['move']
+		return engine.bestmove()['move']
 	except:
 		return "Check Chessboard"

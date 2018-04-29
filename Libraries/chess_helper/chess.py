@@ -1,5 +1,3 @@
-from enum import Enum
-from numpy import ndarray
 test_fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
 
 DEFAULT_POSITION = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
@@ -54,7 +52,6 @@ header = {}
 def load(fen_param):
     global turn
     tokens = fen_param.split(" ")
-    # position = tokens[0]
     square = 0
 
     for i, s in enumerate(tokens):
@@ -74,7 +71,7 @@ def load(fen_param):
 
                 square += 1
 
-    turn = tokens[1];
+    turn = tokens[1]
 
     if(tokens[2].find('K') > -1):
         castling['w'] = castling['w'] | BITS['KSIDE_CASTLE']
@@ -197,26 +194,21 @@ def ascii():
     return s
 
 def put(piece, square):
-    # print piece, ' ', square
     global board
 
 
     if (not('type' in piece and 'color' in piece)):
-        # print 'a'
         return False
 
     if (SYMBOLS.find(str(piece['type']).lower()) == -1):
-        # print 'b'
         return False
 
     if (not(square in SQUARES)):
-        # print 'c'
         return False
 
     sq = SQUARES[square]
 
     if (piece['type'] == KING and not( kings[piece['color']] == EMPTY or kings[piece['color']] == sq) ):
-        # print 'd'
         return False
 
     board[sq] = {'type': piece['type'], 'color': piece['color']}
@@ -226,7 +218,6 @@ def put(piece, square):
 
     update_setup(generate_fen())
 
-    # print 'e'
     return True
 
 
@@ -279,7 +270,6 @@ def clear_setup():
     update_setup(generate_fen())
 
 # Local tests:
-
 # load('rnbqkbnr/ppppppp1/7p/8/8/1P6/P1PPPPPP/RNBQKBNR w KQkq - 0 1')
 # print ascii()
 # print(fen())

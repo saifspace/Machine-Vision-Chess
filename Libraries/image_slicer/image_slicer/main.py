@@ -133,7 +133,6 @@ def slice(filename, number_tiles, save=True):
             block_coordinates[number] = area
             tiles.append(tile)
 
-            # print str(number) + '  ' + str(area) + '\n'
             number += 1
 
     return block_coordinates

@@ -1,8 +1,8 @@
+from Libraries.machine_learning.label_image import predict_label
 import Libraries.image_slicer.image_slicer.main as image_slicer
+from ColourDetector import ColourDetector
 import cv2
 import os
-from ColourDetector import ColourDetector
-from Libraries.machine_learning.label_image import predict_label
 
 
 class ImageHandler:
@@ -52,7 +52,6 @@ class ImageHandler:
 		self.crop_x_value = 0
 		self.crop_y_value = 0
 
-
 	def capture_image(self):
 		"""
 		This method performs a still capture from a video stream and saves the image
@@ -61,7 +60,7 @@ class ImageHandler:
 		Returns:
 			Will return nothing, thus None is returned by default.
 		"""
-		# print 'Video Stream Loaded.'
+		print('Video Stream Loaded.')
 
 		video_cap = cv2.VideoCapture(0)
 		video_cap.set(3,640)
@@ -89,10 +88,9 @@ class ImageHandler:
 		cv2.destroyAllWindows()
 		video_cap.release()
 
-
 	def load_captured_image(self, flag=''):
 		"""
-		The method loads the image from the given paths as a numpy array and assigned it to the
+		The method loads the image from the given paths as a numpy array and assigns it to the
 		class attribute named captured_image.
 
 		Returns:
@@ -103,13 +101,12 @@ class ImageHandler:
 
 		self.captured_image = cv2.imread(path)
 
-		# print 'Image Loaded.'
+		print("Image Loaded.")
 
-	# @staticmethod
 	def mouse_click_crop(self, event, x, y, flags, param):
 		"""
 		This is a method that will be called every time there is a mouse click during the threshold
-		setting step. All threholds that are gathered are stored in the crop_thresholds lists.
+		setting (Region of Interest) step. All thresholds that are gathered are stored in the crop_thresholds lists.
 
 		Returns:
 			Nothing, None.
@@ -130,7 +127,7 @@ class ImageHandler:
 
 	def set_thresholds(self):
 		"""
-		This method invokes the mouse_click_crop_function to setup the threholds.
+		This method invokes the mouse_click_crop_function to setup the thresholds.
 		The method exits when 'q' keypress is detected. Press twice due to waitKey.
 
 		Returns:
@@ -144,11 +141,18 @@ class ImageHandler:
 			cv2.setMouseCallback('image', self.mouse_click_crop)
 			cv2.waitKey(0)
 			if cv2.waitKey() == ord('q'):
-				# print 'Thresholds Set.'
+				print('Thresholds Set.')
 				break
 		cv2.destroyAllWindows()
 
 	def crop_and_save(self):
+		"""
+		This method crops everything in the image except the region of interest.
+
+		Returns:
+		 	Nothing, None.
+		"""
+
 		tuple_one = self.crop_thresholds[0]
 		tuple_two = self.crop_thresholds[1]
 
@@ -166,6 +170,12 @@ class ImageHandler:
 		cv2.imwrite(win_path, self.cropped_image)
 
 	def iterate_blocks(self):
+		"""
+		This method applies colour detection classification to every block/square.
+
+		Returns:
+		 	Returns a dictionary contain the block/square information i.e. what piece it contains.
+		"""
 
 		piece_square_info = {}
 		colour_detection = ColourDetector()
@@ -173,6 +183,8 @@ class ImageHandler:
 		print('Detecting Pieces.')
 
 		for b in self.reverse_blocks:
+
+			print(b)
 
 			threshold = self.block_id_threshold_dictionary[b]
 
@@ -191,10 +203,17 @@ class ImageHandler:
 			piece = colour_detection.apply_masks_and_return_dominant(cropped_image_hsv)
 
 			if(piece[0] != 'None'):
-				piece_square_info[b] = colour_detection.get_piece_dictionary_from_colour(piece[0]) # a dictionary mapping block id to piece info dictionary.
+				piece_square_info[b] = colour_detection.get_piece_dictionary_from_enum(piece[0]) # a dictionary mapping block id to piece info dictionary.
 		return piece_square_info
 
 	def ml_iterate_blocks(self):
+		"""
+		This method applies machine learning classification to every block/square.
+
+		Returns:
+		 	Nothing, None.
+		"""
+
 		piece_square_info = {}
 		colour_detection = ColourDetector()
 
@@ -213,31 +232,42 @@ class ImageHandler:
 
 			cropped_image = cv2.imread(os.getcwd() + '\Resources\CapturedImage\\board.png')
 
-			# cv2.imwrite(os.getcwd()+ "\Resources\CapturedImage\\"+b+".png" ,  cropped_image[y1:y2, x1:x2])
 			cv2.imwrite(win_path, cropped_image[y1:y2, x1:x2])
 			top_two_predictions = predict_label(win_path)
 			piece_one = top_two_predictions[0].replace(" ", "")
 			piece_two = top_two_predictions[1].replace(" ", "")
 
-			# piece = (predict_label(win_path)).replace(" ", "")
-			# self.second_square_value[b] = colour_detection.get_piece_dictionary_from_colour(piece_two)
+			print("block/square: ", b,  " prediction-1: ", piece_one, " prediction-2: " , piece_two)
 
-			print("block: ", b,  " p1: ", piece_one, " p2: " , piece_two )
 			if(piece_two == "empty"):
 				self.second_square_values[b] = "empty"
 			else:
-				self.second_square_values[b] = colour_detection.get_piece_dictionary_from_colour(piece_two)
+				self.second_square_values[b] = colour_detection.get_piece_dictionary_from_enum(piece_two)
 
 			if(piece_one != "empty"):
-				piece_square_info[b] = colour_detection.get_piece_dictionary_from_colour(piece_one)
+				piece_square_info[b] = colour_detection.get_piece_dictionary_from_enum(piece_one)
 		return piece_square_info
 
 
 	def slice_image(self):
+		"""
+		This method acquires the pair of coordinates for each block/square of the chessboard.
+
+		Returns:
+		 	Nothing, None.
+		"""
+
 		win_path = os.getcwd() + '\Resources\CapturedImage\\cropped_board.png'
 		self.block_thresholds = image_slicer.slice(win_path, 64)
 
 	def create_block_id_threshold_dictionary(self):
+		"""
+		Algorithm implementation to create a mapping between block/square id to its pair of coordinates
+		that are set using the slice_image method.
+
+		Returns:
+		 	Nothing, None.
+		"""
 
 		i = 1
 		for count, b in enumerate(self.reverse_blocks):

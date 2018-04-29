@@ -1,9 +1,5 @@
-import os
 from PIL import Image
-
-# (x,y), where x = +65 , y = +65
-
-# 'a5':(12, 160), 'a4':(12, 210), 'a3':(12, 260), 'a2':(12, 310), 'a1':(12, 360)
+import os
 
 block_dict = {
 	'a8':(12, 10), 'a7':(12, 75), 'a6':(12, 140-5), 'a5':(12, 205-5), 'a4':(12, 270-10), 'a3':(12, 335-10), 'a2':(12, 400-15), 'a1':(12, 465-15),
@@ -24,8 +20,17 @@ pieces_paths = {
 	'b_r': os.getcwd() + '\Resources\pieces\\b_rook.png', 'b_q': os.getcwd() + '\Resources\pieces\\b_queen.png', 'b_k': os.getcwd() + '\Resources\pieces\\b_king.png'
 }
 
-
 def create_image(setup_dict):
+	"""
+	This method creates the image representation of the physical and ASCII generated chessboards.
+
+	Args:
+		setup_dict: dictionary containing the setup created using the translated JavaScript chess module.
+
+	Returns:
+		Nothing, None.
+	"""
+
 	background = Image.open(os.getcwd() + '\Resources\chessboard2.png')
 	for key, value in setup_dict.items():
 		print(key)
