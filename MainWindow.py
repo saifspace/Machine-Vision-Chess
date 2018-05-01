@@ -125,6 +125,14 @@ class Ui_MainWindow(object):
 				ImageRepresentation.create_image(setup)
 				self.board_image_label.setPixmap(QtGui.QPixmap(os.getcwd() + "\Resources\modifiedChessboard.png"))
 
+	def call_quit(self):
+		choice = QtWidgets.QMessageBox.question(self.main_window, 'Exit', 'Exit System?', QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+		if choice == QtWidgets.QMessageBox.Yes:
+			print('Exiting the system.')
+			sys.exit(0)
+		else:
+			pass
+
 	def call_manual_fix(self):
 
 		square_id = self.square_id_combo_box.currentText()
@@ -241,6 +249,7 @@ class Ui_MainWindow(object):
 		self.quit_button.setDefault(False)
 		self.quit_button.setFlat(False)
 		self.quit_button.setObjectName(_fromUtf8("quit_button"))
+		self.quit_button.clicked.connect(self.call_quit)
 
 		self.capture_image_button = QtWidgets.QPushButton(self.centralwidget)
 		self.capture_image_button.setGeometry(QtCore.QRect(0, 130, 221, 41))
