@@ -1,10 +1,10 @@
-import os
-import unittest
-from unittest.mock import patch
+from Libraries.machine_learning.label_image import load_model
 from ImageHandler import ImageHandler
+import unittest
+import os
 
 # NOTE:
-# Run each test individually: right-click on test method and click on the run option.
+# Run all tests together i.e. execute the whole test file.
 class ImageqHandlerTest(unittest.TestCase):
 
 	@classmethod
@@ -64,10 +64,15 @@ class ImageqHandlerTest(unittest.TestCase):
 		self.image_handler.block_id_threshold_dictionary = self.block_id_threshold_Dictionary
 		self.assertTrue(type(self.image_handler.iterate_blocks()) is dict)
 
-	# need to add the CNN to test resources using the same path
-	# def test_ml_iterate_blocks(self):
-	# 	self.image_handler.block_id_threshold_dictionary = self.block_id_threshold_Dictionary
-	# 	self.assertTrue(type(self.image_handler.ml_iterate_blocks()) is dict)
+	def test_ml_iterate_blocks(self):
+		os.chdir(os.getcwd() + '\..\\') # change directory to load graph
+		load_model()
+		self.image_handler.block_id_threshold_dictionary = self.block_id_threshold_Dictionary
+		os.chdir(os.getcwd() + '\Tests\\') # change directory back to Tests
+		output = self.image_handler.ml_iterate_blocks()
+		self.assertTrue(type(output) is dict)
+		self.assertNotEqual(len(output), 0)
+		self.assertNotEqual(len(self.image_handler.get_second_square_value_dict()), 0)
 
 if __name__ == '__main__':
 	unittest.main()
